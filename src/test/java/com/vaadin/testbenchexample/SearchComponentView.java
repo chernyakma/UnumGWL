@@ -40,7 +40,9 @@ public class SearchComponentView extends TestBenchElement {
 	protected GridElement bill (){
 		return $(GridElement.class).first();
 	}
-
+	protected GridElement transactionStatus (){
+		return $(GridElement.class).get(5);
+	}
 }
 
 

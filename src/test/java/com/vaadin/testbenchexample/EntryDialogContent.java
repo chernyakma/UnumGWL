@@ -115,7 +115,10 @@ public class EntryDialogContent extends TestBenchElement {
 	protected InputTextElement suspenseAmountAccept(){
 		return $(TestBenchElement.class).id( "mainContent" ).$(TextFieldElement.class).first().$(InputTextElement.class).first();
 	}
+	protected SelectElement fromAccountPfix () {
 
+		return $( TestBenchElement.class ).id( "mainContent" ).$( SelectElement.class ).first();
+	}
 
 	protected ListBoxElement fromAccount () {
 
@@ -163,6 +166,12 @@ public class EntryDialogContent extends TestBenchElement {
 	protected TextFieldElement loanAmountAccept (){
 		return $(TestBenchElement.class).id( "InputsSection" ).$(TextFieldElement.class).id( "AmountRequested" );
 	}
+	protected InputTextElement premiumAmount (){
+		return $(TestBenchElement.class).id( "mainContent" ).$("transaction-popup-page").first().$(TestBenchElement.class).id( "PremiumSection" ).$("currency-field").id("AmountRequested").$(TextFieldElement.class).first().$(InputTextElement.class).first();
+	}
+	protected InputTextElement billingMonths (){
+		return $(TestBenchElement.class).id( "mainContent" ).$("transaction-popup-page").first().$(TestBenchElement.class).id( "PremiumSection" ).$(TextFieldElement.class).id( "BillingMonths" ).$(InputTextElement.class).first();
+	}
 
 
 	protected CheckboxElement approved (){
@@ -198,12 +207,18 @@ public class EntryDialogContent extends TestBenchElement {
 	protected InputTextElement issueAge(){
 		return $(TestBenchElement.class).id( "mainContent" ).$("transaction-popup-page").first().$ (TestBenchElement.class).id( "BenefitsChangeSection" ).$(TextFieldElement.class).id("IssueAge").$(InputTextElement.class).first();
 	}
+
+
 	protected InputTextElement issueAgeAccept(){
 		return $ (TestBenchElement.class).id( "BenefitsChangeSection" ).$(TextFieldElement.class).id("IssueAge").$(InputTextElement.class).first();
 	}
-	protected InputTextElement notes(){
-		return $ (TestBenchElement.class).id( "transactionNotes" ).$("VAADIN-TEXT-AREA").first().$(InputTextElement.class).id("vaadin-text-area-input-61");
+	protected TestBenchElement notes(){
+		return $ (TestBenchElement.class).id( "mainContent" ).$("transaction-popup-page").first().$(TestBenchElement.class).id( "transactionNotes" ).$("VAADIN-TEXT-AREA").first();
 	}
+	protected TextFieldElement premiumAmountAccept (){
+		return $(TestBenchElement.class).id( "PremiumSection" ).$(TextFieldElement.class).id( "AmountRequested" );
+	}
+
 
 	//Beneficiary
 	protected ListBoxElement selectBene (){

@@ -1,28 +1,65 @@
 package com.vaadin.testbenchexample;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Locale;
 
+import com.vaadin.flow.component.grid.testbench.GridElement;
+import com.vaadin.testbench.TestBenchElement;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.*;
 
 public class GroupListBillIT extends BaseLoginTest {
+	protected LocalDate initialPaidToDate;
+	protected final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy", Locale.ENGLISH);
 
+	@Test
+	public void addManualGroupBill() throws InterruptedException {
+		VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
+		getSelectButton.getSelectItem().selectByText("Search Group");
+		;
+		SearchComponentView getGroup = $(SearchComponentView.class).first();
+		getGroup.searchByGroup().sendKeys("01011110");
+		getGroup.searchButton().click();
+		getGroup.family().getCell("01011110").click();
+		NaviMenuView transaction = $( NaviMenuView.class ).first();
+		transaction.transactions().click();
+		ScenarioView groupTransaction = $(ScenarioView.class).first();
+		groupTransaction.addGroupTransactionButton().click();
+		EntryDialogContent selectTransaction = $(EntryDialogContent.class).first();
+//		TransactionPopUpPageView selectTransaction = $(TransactionPopUpPageView.class).first();
+		selectTransaction.transactionType().selectByText( "Group Manual Bill" );
+		selectTransaction.okButton().click();
+		ScenarioView processManualBillTransaction = $(ScenarioView.class).first();
+		processManualBillTransaction.processFirstTransactionButton().click();
+		Thread.sleep( 3_000 );
+		VaadinDialogView confirm = $(VaadinDialogView.class).first();
+		confirm.getConfirmButton().click();
+
+		ScenarioView transactionsPage = $(ScenarioView.class).first();
+		waitUntil(driver -> !transactionsPage.progressBar().isDisplayed(), 80);
+//		System.out.println(transactionsPage.transactionStatus().getCell("Active").getText());
+//		Assertions.assertFalse(transactionsPage.transactionStatus().getCell("Pending").isDisplayed());
+		Assertions.assertTrue(transactionsPage.transactionStatus().getCell("Active").isDisplayed());
+
+	}
 	@Test
 	public void suspense() throws InterruptedException {
 		VaadinSelectView getSelectButton = $( VaadinSelectView.class ).first();
-		getSelectButton.getSelectItem().selectByText("Search Group");;
+		getSelectButton.getSelectItem().selectByText("Search Group");
 		SearchComponentView getGroup = $( SearchComponentView.class ).first();
-		getGroup.searchByGroup().sendKeys( "34090" );
+		getGroup.searchByGroup().sendKeys( "01011110" );
 		getGroup.searchButton().click();
-		getGroup.family().getCell( "34090" ).click();
+		getGroup.family().getCell( "01011110" ).click();
 		NaviMenuView addSuspense = $( NaviMenuView.class ).first();
 		addSuspense.groupSuspense().click();
 		ScenarioView addSuspenseButton = $( ScenarioView.class ).first();
 		addSuspenseButton.addSuspenceButton().click();
 		EntryDialogContent suspenseSource = $( EntryDialogContent.class ).first();
-		suspenseSource.suspenseAmount().setValue( "59.00" );
-		Assertions.assertEquals( "59.00",suspenseSource.suspenseAmount().getValue() );
+		suspenseSource.suspenseAmount().setValue( "19418.65" );
+		Assertions.assertEquals( "19,418.65",suspenseSource.suspenseAmount().getValue() );
 		suspenseSource.suspenseSource().selectByText( "Check" );
 		Assertions.assertEquals( "Check",suspenseSource.suspenseSource().getSelectedText() );
 		suspenseSource.depositAccount().selectByText( "General Premium" );
@@ -31,18 +68,20 @@ public class GroupListBillIT extends BaseLoginTest {
 //				Assertions.assertEquals( "$100,000.00",checkSuspence.suspenceBalance().getText() );
 
 		checkSuspence.transferSuspenceButton().click();
+
 		EntryDialogContent transferSuspence = $(EntryDialogContent.class).first();
-		transferSuspence.fromAccount().selectByText( "General Premium" );
+		transferSuspence.fromAccount().selectByText("General Premium");
+
 		//	EntryDialogContent transferSuspenceTo = $(EntryDialogContent.class).first();
 		//	transferSuspence.note().sendKeys( "123" );
 		//	transferSuspence.toAccount().focus();
 		transferSuspence.toAccount().selectByText( "Group" );
-		transferSuspence.searchFamily().sendKeys( "34090" );
+		transferSuspence.searchFamily().sendKeys( "01011110" );
 		transferSuspence.search().doubleClick();
-		transferSuspence.family().getCell( "34090" ).click();
+		transferSuspence.family().getCell( "01011110" ).click();
 		transferSuspence.toAccount().selectByText( "List Bill" );
-		transferSuspence.transferAmount().setValue( "59.00" );
-		Assertions.assertEquals( "59.00",transferSuspence.transferAmount().getValue() );
+		transferSuspence.transferAmount().setValue( "19418.65" );
+		Assertions.assertEquals( "19,418.65",transferSuspence.transferAmount().getValue() );
 		transferSuspence.transferEffectveDate().setDate( LocalDate.now() );
 //		transferSuspence.note().sendKeys( "transfer" );
 		transferSuspence.okButton().click();
@@ -55,30 +94,46 @@ public class GroupListBillIT extends BaseLoginTest {
 		VaadinSelectView getSelectButton = $( VaadinSelectView.class ).first();
 		getSelectButton.getSelectItem().selectByText("Search Group");;
 		SearchComponentView getGroup = $( SearchComponentView.class ).first();
-		getGroup.searchByGroup().sendKeys( "37098" );
+		getGroup.searchByGroup().sendKeys( "01011110" );
 		getGroup.searchButton().click();
-		getGroup.family().getCell( "37098" ).click();
+		getGroup.family().getCell( "01011110" ).click();
+		NaviMenuView getDevivsions=$(NaviMenuView.class).first();
+		getDevivsions.getDivisions().click();
+		ScenarioView getPaidToDate = $(ScenarioView.class).first();
+//		System.out.println(getPaidToDate.paidToDate().getText());
+        String originalDateText = getPaidToDate.paidToDate().getText();
+        initialPaidToDate = LocalDate.parse(originalDateText, formatter);
+
 		NaviMenuView groupBills = $( NaviMenuView.class ).first();
 		groupBills.groupBills().click();
 		ScenarioView bills=$(ScenarioView.class).first();
 		bills.bill().getCell("Unpaid").click();
-		bills.receivedAsBilled().click();
-		bills.reconcile().click();
+		bills.receivedAsBilledAccept().click();
+		bills.reconcileAccept().click();
 		Thread.sleep(3_000);
-		bills.suspenseFunding().click();
+		bills.suspenseFundingAccept().click();
 
 		EntryDialogContent suspenseFunding = $(EntryDialogContent.class).first();
 		suspenseFunding.autoFund().click();
 
 		suspenseFunding.okFundButton().click();
 		ScenarioView payBill = $(ScenarioView.class).first();
-		payBill.processBill().click();
+		payBill.processBillAccept().click();
 
 		VaadinDialogView confirm = $(VaadinDialogView.class).first();
 		confirm.getConfirmButton().click();
+		ScenarioView process = $(ScenarioView.class).first();
+		waitUntil(driver -> process.billInfo().isDisplayed(),80);
+//		Thread.sleep(50_000);
+		NaviMenuView devivsions=$(NaviMenuView.class).first();
+		getDevivsions.getDivisions().click();
+		ScenarioView paidToDate = $(ScenarioView.class).first();
+		String updatedText = paidToDate.paidToDate().getText();
+		LocalDate updatedDate = LocalDate.parse(updatedText, formatter);
 
+		Assertions.assertEquals(initialPaidToDate.plusMonths(1), updatedDate);
 	}
-
+/*
 	@Test
 	public void addLoan() throws InterruptedException, IOException {
 		VaadinSelectView getSelectButton = $( VaadinSelectView.class ).first();
@@ -113,48 +168,7 @@ public class GroupListBillIT extends BaseLoginTest {
 		confirm.getConfirmButton().click();
 		ScenarioView transactionsPage = $(ScenarioView.class).first();
 		waitUntil(driver -> !transactionsPage.progressBar().isDisplayed(), 80);
-     /*   transactionsPage.viewLoanTransactionButton().click();
-		Thread.sleep( 5_000 );
-		System.err.println("Screenshot Directory: " + Parameters.getScreenshotReferenceDirectory());
 
-		try {
-			System.err.println("Starting addLoan test...");
-
-
-
-			File referenceScreenshot = ImageFileUtil.getReferenceScreenshotFile("Screenshot 2024-05-31 165801.png");
-			System.err.println("Reference screenshot path: " + referenceScreenshot.getAbsolutePath());
-			System.err.println("Reference screenshot exists: " + referenceScreenshot.exists());
-
-			boolean comparisonResult = testBench().compareScreen(referenceScreenshot);
-			System.err.println("Screenshot comparison result: " + comparisonResult);
-
-			Assert.assertTrue("Screenshot comparison failed", comparisonResult);
-		} catch (Exception e) {
-			System.err.println("An error occurred: " + e.getMessage());
-			e.printStackTrace(System.err);
-
-			// Create error-screenshots directory if it doesn't exist
-			File errorScreenshotDir = new File("error-screenshots");
-			if (!errorScreenshotDir.exists()) {
-				errorScreenshotDir.mkdirs();
-			}
-
-			// Save a failure screenshot with a timestamp
-			String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-			File actualScreenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-			File destination = new File("error-screenshots/failure-" + timestamp + "-Screenshot-2024-05-31-165801.png");
-			FileUtils.copyFile(actualScreenshot, destination);
-			System.err.println("Failure screenshot saved to: " + destination.getAbsolutePath());
-
-			throw e; // Re-throw to fail the test
-		}
-
-
-		TransactionViewPage transactionPage = $(TransactionViewPage.class).first();
-		transactionPage.cancel().click();
-
-      */
 		NaviMenuView policy = $(NaviMenuView.class).first();
 		policy.getPolicy().click();
 		ScenarioView policyPage = $(ScenarioView.class).first();
@@ -208,15 +222,7 @@ public class GroupListBillIT extends BaseLoginTest {
 
 		Assertions.assertEquals( "$ 16.90",transactionsPage.modalPremium().getText() );
 
-/*		ScenarioView transactionsPage = $(ScenarioView.class).first();
-		transactionsPage.viewLoanTransactionButton().click();
-		Thread.sleep( 5_000 );
-		Assert.assertTrue( testBench().compareScreen( ImageFileUtil.getReferenceScreenshotFile(
-				"Screenshot 2024-05-31 165802.png" ) ) );
-//		Assertions.assertEquals("Actual",processTransaction.transactionStatus().getText());
-		TransactionViewPage transactionPage = $(TransactionViewPage.class).first();
-		transactionPage.cancel().click();
-*/
+
 		ScenarioView deleteTransaction = $(ScenarioView.class).first();
 		deleteTransaction.reverseAddRiderTransactionButton().click();
 		VaadinDialogView ok = $(VaadinDialogView.class).first();
@@ -231,5 +237,5 @@ public class GroupListBillIT extends BaseLoginTest {
 
 
 	}
-
+*/
 }

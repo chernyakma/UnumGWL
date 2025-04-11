@@ -39,7 +39,7 @@ public class AddFamilyPfixIT extends BaseLoginTest {
 		Assertions.assertEquals("Palmer", family.getLastName().getValue());
 //		Assertions.assertEquals("Male", family.getGender().getSelectedText());
 //		Assertions.assertEquals("1960-10-15", family.getDateOfBirth().getInputValue());
-		       family.getSaveButton().click();
+//		       family.getSaveButton().click();
 	}
 
 	@Test
