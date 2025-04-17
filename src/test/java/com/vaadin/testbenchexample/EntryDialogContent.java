@@ -21,6 +21,21 @@ import com.vaadin.testbench.elementsbase.Element;
 @Element( "entry-dialog-content" )
 public class EntryDialogContent extends TestBenchElement {
 
+	// mainButton
+	protected ButtonElement okButton (){
+
+		return $(ButtonElement.class).first();
+	}
+	protected ButtonElement closeButton (){
+		return $(ButtonElement.class).last();
+	}
+
+	protected ButtonElement processButton (){
+		return $(ButtonElement.class).first();
+	}
+
+	// Bank
+
 	protected InputTextElement getFinancialInstitutionName() {
 
 		return $( TestBenchElement.class ).id( "FinancialInstitutionInfoSection" ).$( TextFieldElement.class ).id( "FinancialInstitutionName" ).$(InputTextElement.class).first();
@@ -30,7 +45,7 @@ public class EntryDialogContent extends TestBenchElement {
 
 		return $( TestBenchElement.class ).id( "FinancialInstitutionInfoSection" ).$( TextFieldElement.class ).id( "BankCity" ).$(InputTextElement.class).first();
 
-}
+    }
 	protected ListBoxElement getBankState() {
 
 		return $( TestBenchElement.class ).id( "FinancialInstitutionInfoSection" ).$( SelectElement.class ).id( "BankState" ).$(ListBoxElement.class).first();
@@ -56,23 +71,23 @@ public class EntryDialogContent extends TestBenchElement {
 		return $( TestBenchElement.class ).id( "FinancialInstitutionInfoSection" ).$( TextFieldElement.class ).id( "RoutingNumber" );
 
 	}
-
 	protected SelectElement getPartyType() {
+
 		return $( TestBenchElement.class ).id( "FinancialInstitutionInfoSection" ).$(SelectElement.class).id( "PartyType" );
+
 	}
 	protected ListBoxElement getAccountType() {
+
 		return $( TestBenchElement.class ).id( "FinancialInstitutionInfoSection" ).$(SelectElement.class).id( "AccountType" ).$(ListBoxElement.class).first();
+
 	}
 	protected SelectElement getAccountTypeAccept() {
+
 		return $( TestBenchElement.class ).id( "FinancialInstitutionInfoSection" ).$(SelectElement.class).id( "AccountType" );
+
 	}
 
-	protected ButtonElement okButton (){
-		return $(ButtonElement.class).first();
-	}
-	protected ButtonElement closeButton (){	return $(ButtonElement.class).last();}
-
-	protected ButtonElement processButton (){	return $(ButtonElement.class).first();}
+	// Notes
 
 	protected ButtonElement addNoteButton(){
 		return $(TestBenchElement.class).id( "mainContent" ).$( "note-list-view" ).first().$(ButtonElement.class).first();
@@ -95,14 +110,15 @@ public class EntryDialogContent extends TestBenchElement {
 	protected UploadElement uploadFileButton(){
 		return $(TestBenchElement.class).id( "mainContent" ).$( "note-list-view" ).first().$(TestBenchElement.class).id( "noteDetailDiv" ).$( "note-view" ).first().$(TestBenchElement.class).id( "uploadDiv" ).$(UploadElement.class).first();
 	}
+
+	// Suspense
+
 	protected ListBoxElement suspenseSource(){
 		return $(TestBenchElement.class).id( "mainContent" ).$(SelectElement.class).first().$(ListBoxElement.class).first();
 	}
 	protected SelectElement suspenseSourceAccept(){
 		return $(TestBenchElement.class).id( "mainContent" ).$(SelectElement.class).first();
 	}
-
-
 	protected ListBoxElement depositAccount(){
 		return $(TestBenchElement.class).id( "mainContent" ).$(SelectElement.class).last().$(ListBoxElement.class).first();
 	}
@@ -119,7 +135,6 @@ public class EntryDialogContent extends TestBenchElement {
 
 		return $( TestBenchElement.class ).id( "mainContent" ).$( SelectElement.class ).first();
 	}
-
 	protected ListBoxElement fromAccount () {
 
 		return $( TestBenchElement.class ).id( "mainContent" ).$( "transfer-suspense-component" ).first().$( TestBenchElement.class ).id( "fromContent" ).$( "select-transfer-financial-account-component" ).first().$( SelectElement.class ).first().$(ListBoxElement.class).first();
@@ -128,52 +143,55 @@ public class EntryDialogContent extends TestBenchElement {
 
 		return $( TestBenchElement.class ).id( "mainContent" ).$( "transfer-suspense-component" ).first().$( TestBenchElement.class ).id( "fromContent" ).$( "select-transfer-financial-account-component" ).first().$( SelectElement.class ).first();
 	}
-		protected ListBoxElement toAccount (){
+	protected ListBoxElement toAccount (){
+
 		return $(TestBenchElement.class).id( "mainContent" ).$("transfer-suspense-component").first().$(TestBenchElement.class).id( "toContent" ).$("select-transfer-financial-account-component").first().$(SelectElement.class).first().$(ListBoxElement.class).first();
 
-		}
+	}
 	protected SelectElement toAccountAccept (){
+
 		return $(TestBenchElement.class).id( "mainContent" ).$("transfer-suspense-component").first().$(TestBenchElement.class).id( "toContent" ).$("select-transfer-financial-account-component").first().$(SelectElement.class).first();
 
 	}
-		protected InputTextElement searchFamily (){
-			return $(TestBenchElement.class).id( "mainContent" ).$("transfer-suspense-component").first().$(TestBenchElement.class).id( "toContent" ).$("select-transfer-financial-account-component").first().$(TestBenchElement.class).id( "searchContent" ).$(TextFieldElement.class).first().$(InputTextElement.class).first();
-		}
+	protected InputTextElement searchFamily (){
 
+		return $(TestBenchElement.class).id( "mainContent" ).$("transfer-suspense-component").first().$(TestBenchElement.class).id( "toContent" ).$("select-transfer-financial-account-component").first().$(TestBenchElement.class).id( "searchContent" ).$(TextFieldElement.class).first().$(InputTextElement.class).first();
+	}
 	protected GridElement family(){
+
 		return $(TestBenchElement.class).id( "mainContent" ).$("transfer-suspense-component").first().$(TestBenchElement.class).id( "toContent" ).$("select-transfer-financial-account-component").first().$(TestBenchElement.class).id( "searchContent" ).$("search-component").first().$(GridElement.class).first();
 	}
 
-	    protected ButtonElement search (){
-			return $(TestBenchElement.class).id( "mainContent" ).$("transfer-suspense-component").first().$(TestBenchElement.class).id( "toContent" ).$("select-transfer-financial-account-component").first().$(TestBenchElement.class).id( "searchContent" ).$(ButtonElement.class).last();
-		}
-		protected TextAreaElement note (){
-			return $(TestBenchElement.class).id( "mainContent" ).$("transfer-suspense-component").first().$(TestBenchElement.class).id( "inputContent" ).$(TextAreaElement.class).first();
-		}
-		protected InputTextElement transferAmount(){
-			return $(TestBenchElement.class).id( "mainContent" ).$("transfer-suspense-component").first().$(TestBenchElement.class).id( "inputContent" ).$("CURRENCY-FIELD").first().$(TextFieldElement.class).first().$(InputTextElement.class).first();
-		}
+	protected ButtonElement search (){
+
+		return $(TestBenchElement.class).id( "mainContent" ).$("transfer-suspense-component").first().$(TestBenchElement.class).id( "toContent" ).$("select-transfer-financial-account-component").first().$(TestBenchElement.class).id( "searchContent" ).$(ButtonElement.class).last();
+	}
+	protected TextAreaElement note (){
+
+		return $(TestBenchElement.class).id( "mainContent" ).$("transfer-suspense-component").first().$(TestBenchElement.class).id( "inputContent" ).$(TextAreaElement.class).first();
+	}
+	protected InputTextElement transferAmount(){
+
+		return $(TestBenchElement.class).id( "mainContent" ).$("transfer-suspense-component").first().$(TestBenchElement.class).id( "inputContent" ).$("CURRENCY-FIELD").first().$(TextFieldElement.class).first().$(InputTextElement.class).first();
+	}
 	protected InputTextElement transferAmountAccept(){
+
 		return $(TestBenchElement.class).id( "mainContent" ).$("transfer-suspense-component").first().$(TestBenchElement.class).id( "inputContent" ).$(TextFieldElement.class).first().$(InputTextElement.class).first();
 	}
 	protected DatePickerElement transferEffectveDate(){
 		return $(TestBenchElement.class).id( "mainContent" ).$("transfer-suspense-component").first().$(TestBenchElement.class).id( "inputContent").$(DatePickerElement.class).first();
 	}
 
-	    protected InputTextElement loanAmount (){
-			return $(TestBenchElement.class).id( "mainContent" ).$("transaction-popup-page").first().$(TestBenchElement.class).id( "InputsSection" ).$( "CURRENCY-FIELD").id( "AmountRequested" ).$(TextFieldElement.class).first().$(InputTextElement.class).first();
-		}
+	// Loan
+
+	protected InputTextElement loanAmount (){
+
+		return $(TestBenchElement.class).id( "mainContent" ).$("transaction-popup-page").first().$(TestBenchElement.class).id( "InputsSection" ).$( "CURRENCY-FIELD").id( "AmountRequested" ).$(TextFieldElement.class).first().$(InputTextElement.class).first();
+	}
 	protected TextFieldElement loanAmountAccept (){
+
 		return $(TestBenchElement.class).id( "InputsSection" ).$(TextFieldElement.class).id( "AmountRequested" );
 	}
-	protected InputTextElement premiumAmount (){
-		return $(TestBenchElement.class).id( "mainContent" ).$("transaction-popup-page").first().$(TestBenchElement.class).id( "PremiumSection" ).$("currency-field").id("AmountRequested").$(TextFieldElement.class).first().$(InputTextElement.class).first();
-	}
-	protected InputTextElement billingMonths (){
-		return $(TestBenchElement.class).id( "mainContent" ).$("transaction-popup-page").first().$(TestBenchElement.class).id( "PremiumSection" ).$(TextFieldElement.class).id( "BillingMonths" ).$(InputTextElement.class).first();
-	}
-
-
 	protected CheckboxElement approved (){
 		return $(TestBenchElement.class).id( "mainContent" ).$("transaction-popup-page").first().$(TestBenchElement.class).id( "InputsSection" ).$(CheckboxElement.class).id("Approved");
 	}
@@ -192,6 +210,18 @@ public class EntryDialogContent extends TestBenchElement {
 	protected ListBoxElement disbursementMethod (){
 		return $(TestBenchElement.class).id( "mainContent" ).$("transaction-popup-page").first().$(TestBenchElement.class).id( "InputsSection" ).$( SelectElement.class).id( "DisbursementMethod" ).$(ListBoxElement.class).first();
 	}
+
+	// Premium
+
+	protected InputTextElement premiumAmount (){
+		return $(TestBenchElement.class).id( "mainContent" ).$("transaction-popup-page").first().$(TestBenchElement.class).id( "PremiumSection" ).$("currency-field").id("AmountRequested").$(TextFieldElement.class).first().$(InputTextElement.class).first();
+	}
+	protected InputTextElement billingMonths (){
+		return $(TestBenchElement.class).id( "mainContent" ).$("transaction-popup-page").first().$(TestBenchElement.class).id( "PremiumSection" ).$(TextFieldElement.class).id( "BillingMonths" ).$(InputTextElement.class).first();
+	}
+
+	// Rider
+
 	protected ListBoxElement coverageName (){
 		return $(TestBenchElement.class).id( "mainContent" ).$("transaction-popup-page").first().$(TestBenchElement.class).id( "BenefitsChangeSection" ).$( SelectElement.class).id( "CoverageProductCodeBeingUpdated" ).$(ListBoxElement.class).first();
 	}
@@ -207,7 +237,6 @@ public class EntryDialogContent extends TestBenchElement {
 	protected InputTextElement issueAge(){
 		return $(TestBenchElement.class).id( "mainContent" ).$("transaction-popup-page").first().$ (TestBenchElement.class).id( "BenefitsChangeSection" ).$(TextFieldElement.class).id("IssueAge").$(InputTextElement.class).first();
 	}
-
 
 	protected InputTextElement issueAgeAccept(){
 		return $ (TestBenchElement.class).id( "BenefitsChangeSection" ).$(TextFieldElement.class).id("IssueAge").$(InputTextElement.class).first();
@@ -263,6 +292,7 @@ public class EntryDialogContent extends TestBenchElement {
 	protected SelectElement relationshipAccept(){
 		return $(TestBenchElement.class).id("FldSec_1" ).$(SelectElement.class).id("RelationshipType");
 	}
+
     //Other Roles
 	protected ListBoxElement roleType(){
 		return $(TestBenchElement.class).id("FldSec_1" ).$(SelectElement.class).id("RoleType").$(ListBoxElement.class).first();
@@ -283,6 +313,7 @@ public class EntryDialogContent extends TestBenchElement {
 	protected DatePickerElement endDate (){
 		return $(TestBenchElement.class).id("FldSec_1" ).$(DatePickerElement.class).id("EndDate");
 	}
+
 	//ListBill
 	protected CheckboxElement autoFund(){
 		return $(TestBenchElement.class).id( "mainContent" ).$("group-bill-payment-deposit-selection-component").first().$(CheckboxElement.class).first();

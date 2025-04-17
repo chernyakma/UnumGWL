@@ -15,7 +15,7 @@ public class AddFamilyAcceptIT extends BaseLoginTest{
         //	getDriver().get("http://localhost:8080/unum_webui/familyInsured");
         //	getDriver().get( "http://" + IPAddress.findSiteLocalAddress() + ":8080/navy_webui/familyInsured");
         //	getDriver().get( "https://test.everlake.calcfocus.net/achieve/familyInsured/" );
-        getDriver().get("https://unumGWL4.testbed.calcfocus.net/achieve/familyInsured");
+        getDriver().get("https://unumGWL5.testbed.calcfocus.net/achieve/familyInsured");
         AddFamilyView family = $(AddFamilyView.class).first();
 
         family.groupID().openPopup();

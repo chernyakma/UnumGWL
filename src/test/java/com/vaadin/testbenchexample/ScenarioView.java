@@ -28,36 +28,51 @@ import java.util.Locale;
 //@Element( "scenario-component" )
 public class ScenarioView extends TestBenchElement {
 
+
+	// AddButtons
+
+
 	protected ButtonElement getAddButton() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("saveable-page").first().$(TestBenchElement.class).id("S1").$(TestBenchElement.class).id("FamilyAddressTable").$(ButtonElement.class).first();
 
 	}
+	protected ButtonElement addMemberButton() {
+
+		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("family-member-page").first().$(TestBenchElement.class).id("Members").$(ButtonElement.class).first();
+	}
+	protected ButtonElement getAddBeneButton() {
+
+		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("saveable-page").first().$(TestBenchElement.class).id("S0").$(TestBenchElement.class).id("BeneficiaryTable").$(ButtonElement.class).get(1);
+
+	}
+
+
+
+	// family
 
 	protected TestBenchElement getName() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("crumbs").$("breadcrumb-component").first().$(TestBenchElement.class).get(8);
 	}
-
 	protected TestBenchElement getFamily() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("crumbs").$("breadcrumb-component").first().$(TestBenchElement.class).last();
 	}
-
 	protected ButtonElement getSaveButton() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("saveable-page").first().$(ButtonElement.class).first();
 
 	}
-
 	protected ButtonElement getEditAddressButton() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("saveable-page").first().$(TestBenchElement.class).id("S1").$(TestBenchElement.class).id("FamilyAddressTable").$(ButtonElement.class).get(1);
 	}
-
 	protected ButtonElement getEditFamilyButton() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("family-member-page").first().$(TestBenchElement.class).id("Members").$(TestBenchElement.class).id("section").$("search-component").first().$(ButtonElement.class).first();
 	}
 
+
+	// DeleteButtons
 
 	protected ButtonElement getDeleteSpouseButtonAccept() {
 
@@ -65,141 +80,110 @@ public class ScenarioView extends TestBenchElement {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("family-member-page").first().$(TestBenchElement.class).id("Members").$(TestBenchElement.class).id("section").$("search-component").first().$(ButtonElement.class).get(3);
 
 	}
-
 	protected ButtonElement getDeleteSpouseButton() {
 
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("family-member-page").first().$(TestBenchElement.class).id("Members").$(TestBenchElement.class).id("section").$("search-component").first().$(ButtonElement.class).get(2);
 
 	}
-
 	protected ButtonElement getDeleteButton() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("saveable-page").first().$(TestBenchElement.class).id("S1").$(TestBenchElement.class).id("FamilyAddressTable").$(ButtonElement.class).get(2);
 	}
-
 	protected ButtonElement getDeleteBeneButton() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("saveable-page").first().$(TestBenchElement.class).id("S0").$(TestBenchElement.class).id("BeneficiaryTable").$(TestBenchElement.class).id("grid").$(ButtonElement.class).get(3);
 	}
-
 	protected ButtonElement getDeleteRoleButton() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("saveable-page").first().$(TestBenchElement.class).id("S0").$(TestBenchElement.class).id("RoleTable").$(TestBenchElement.class).id("grid").$(ButtonElement.class).get(2);
 	}
-
 	protected ButtonElement getDeleteFamilyBeneButton() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("family-member-page").first().$(TestBenchElement.class).id("membersDiv").$(TestBenchElement.class).id("Members").$(TestBenchElement.class).id("section").$("search-component").first().$(ButtonElement.class).get(2);
 	}
-
 	protected ButtonElement getDeleteFamilyBeneButtonAccept() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("family-member-page").first().$(TestBenchElement.class).id("membersDiv").$(TestBenchElement.class).id("Members").$(TestBenchElement.class).id("section").$("search-component").first().$(ButtonElement.class).get(5);
 	}
-
 	protected ButtonElement getDeleteFamilyOwner() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("family-member-page").first().$(TestBenchElement.class).id("membersDiv").$(TestBenchElement.class).id("Members").$(TestBenchElement.class).id("section").$("search-component").first().$(ButtonElement.class).get(2);
 	}
-
 	protected ButtonElement getDeleteFamilyOther() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("family-member-page").first().$(TestBenchElement.class).id("membersDiv").$(TestBenchElement.class).id("Members").$(TestBenchElement.class).id("section").$("search-component").first().$(ButtonElement.class).get(2);
 	}
-
 	protected ButtonElement getDeleteFamilyOtherAccept() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("family-member-page").first().$(TestBenchElement.class).id("membersDiv").$(TestBenchElement.class).id("Members").$(TestBenchElement.class).id("section").$("search-component").first().$(ButtonElement.class).get(5);
 	}
 
-
-	protected ButtonElement addMemberButton() {
-
-		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("family-member-page").first().$(TestBenchElement.class).id("Members").$(ButtonElement.class).first();
-	}
-
-	protected ButtonElement getAddBeneButton() {
-
-		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("saveable-page").first().$(TestBenchElement.class).id("S0").$(TestBenchElement.class).id("BeneficiaryTable").$(ButtonElement.class).get(1);
-
-	}
+	// Policy
 
 	protected GridElement applicationNumber() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("family-member-page").first().$(TestBenchElement.class).id("applicationsDiv").$(TestBenchElement.class).id("Members").$(TestBenchElement.class).id("section").$("search-component").first().$(GridElement.class).first();
 	}
-
 	protected GridElement illustrationNumber() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("family-member-page").first().$(TestBenchElement.class).id("illustrationsDiv").$(TestBenchElement.class).id("Members").$(TestBenchElement.class).id("section").$("search-component").first().$(GridElement.class).first();
 	}
-
 	protected GridElement policyNumber() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("family-member-page").first().$(TestBenchElement.class).id("policiesDiv").$(TestBenchElement.class).id("Members").$(TestBenchElement.class).id("section").$("search-component").first().$(GridElement.class).first();
 	}
+	protected WebElement policyPaidToDate() {
+		return $( TestBenchElement.class ).id( "viewContent" ).$( "scenario-component" ).first().$( TestBenchElement.class ).id( "titleLayout").$( TestBenchElement.class).id( "summaryTable").$( TestBenchElement.class).id( "componentContent" ).findElements( By.className( "summary-column-value" )).get( 10 );
+	}
+	protected DatePickerElement date (){
+		return $( TestBenchElement.class ).id( "viewContent" ).$( "scenario-component" ).first().$( TestBenchElement.class ).id( "fieldLayout" ).$("transactions-view-page").first().$(DatePickerElement.class).first();
+	}
+	protected ButtonElement cycle (){
+		return $( TestBenchElement.class ).id( "viewContent" ).$( "scenario-component" ).first().$( TestBenchElement.class ).id( "fieldLayout" ).$("transactions-view-page").first().$(ButtonElement.class).last();
+	}
+
+
+	// Transactions
 
 	protected ButtonElement processActivateTransactionButton() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("transactions-view-page").first().$(TestBenchElement.class).id("content").$("search-component").first().$(ButtonElement.class).get(6);
 	}
-
 	protected ButtonElement processSuspenseTransactionButton() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("transactions-view-page").first().$(TestBenchElement.class).id("content").$("search-component").first().$(ButtonElement.class).get(6);
 	}
-
 	protected ButtonElement processInitialPremiumTransactionButton() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("transactions-view-page").first().$(TestBenchElement.class).id("content").$("search-component").first().$(ButtonElement.class).get(2);
 	}
-
 	protected ButtonElement processFirstTransactionButton() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("transactions-view-page").first().$(TestBenchElement.class).id("content").$("search-component").first().$(ButtonElement.class).get(1);
 	}
-
 	protected ProgressBarElement progressBar() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("transactions-view-page").first().$(ProgressBarElement.class).first();
 	}
-
 	protected ButtonElement deleteLoanTransactionButton() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("transactions-view-page").first().$(TestBenchElement.class).id("content").$("search-component").first().$(ButtonElement.class).get(3);
 	}
 
-
 	protected ButtonElement reverseLoanTransactionButton() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("transactions-view-page").first().$(TestBenchElement.class).id("content").$("search-component").first().$(ButtonElement.class).get(1);
 	}
-
 	protected ButtonElement reverseAddRiderTransactionButton() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("transactions-view-page").first().$(TestBenchElement.class).id("content").$("search-component").first().$(ButtonElement.class).get(1);
 	}
-
 	protected ButtonElement viewLoanTransactionButton() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("transactions-view-page").first().$(TestBenchElement.class).id("content").$("search-component").first().$(ButtonElement.class).get(2);
 	}
-
 	protected WebElement policyStatus() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("titleLayout").$(TestBenchElement.class).id("summaryTable").$(TestBenchElement.class).id("componentContent").findElements(By.className("summary-column-value")).get(3);
 	}
-
 	protected WebElement modalPremium() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("titleLayout").$(TestBenchElement.class).id("summaryTable").$(TestBenchElement.class).id("componentContent").findElements(By.className("summary-column-value")).get(8);
-	}
-
-	protected ButtonElement addSuspenceButton() {
-		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("suspense-page").first().$(ButtonElement.class).first();
-	}
-
-	protected TestBenchElement suspenceBalance() {
-		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("suspense-page").first().$(TestBenchElement.class).id("topContent").$("VAADIN-GRID-CELL-CONTENT").get(9);
-	}
-
-	protected ButtonElement transferSuspenceButton() {
-		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("suspense-page").first().$(ButtonElement.class).last();
 	}
 
 	protected ButtonElement addTransactionButton() {
@@ -226,22 +210,38 @@ public class ScenarioView extends TestBenchElement {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("transactions-view-page").first().$(TestBenchElement.class).id("content").$("search-component").first().$(GridElement.class).first();
 	}
 
+
+	// suspense
+
+	protected ButtonElement addSuspenceButton() {
+		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("suspense-page").first().$(ButtonElement.class).first();
+	}
+	protected TestBenchElement suspenceBalance() {
+		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("suspense-page").first().$(TestBenchElement.class).id("topContent").$("VAADIN-GRID-CELL-CONTENT").get(9);
+	}
+	protected ButtonElement transferSuspenceButton() {
+		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("suspense-page").first().$(ButtonElement.class).last();
+	}
+
+
 	protected GridElement family() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("family-member-page").first().$(TestBenchElement.class).id("membersDiv").$(TestBenchElement.class).id("Members").$(TestBenchElement.class).id("section").$("search-component").first().$(GridElement.class).first();
 	}
 
 
+	// Owner
+
 	protected ButtonElement newOwner() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("saveable-page").first().$(TestBenchElement.class).id("OwnerSection").$(TestBenchElement.class).id("OwnerDialog").$(ButtonElement.class).first();
 	}
-
 	protected ListBoxElement ownerGUID() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("saveable-page").first().$(TestBenchElement.class).id("OwnerSection").$(SelectElement.class).id("OwnerGUID").$(ListBoxElement.class).first();
 	}
-
 	protected SelectElement ownerGUIDAccept() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("saveable-page").first().$(TestBenchElement.class).id("OwnerSection").$(SelectElement.class).id("OwnerGUID");
 	}
+
+	// Otherroles
 
 	protected ButtonElement getAddOtherRolesButton() {
 
@@ -249,60 +249,42 @@ public class ScenarioView extends TestBenchElement {
 
 	}
 
+	// ListBill
+
 	protected GridElement bill() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("group-billing-payment-page").first().$(TestBenchElement.class).id("pageContent").$("search-component").first().$(GridElement.class).first();
 	}
-
 	protected TestBenchElement paidToDate() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("saveable-page").first().$(TestBenchElement.class).id("TableSection").$(TestBenchElement.class).id("DivisionsTable").$(GridElement.class).first().$("vaadin-grid-cell-content").get(5);
 	}
-
 	protected ButtonElement receivedAsBilled() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("group-billing-payment-page").first().$(TestBenchElement.class).id("pageContent").$("group-bill-payment-component").first().$(ButtonElement.class).get(3);
 	}
-
 	protected ButtonElement receivedAsBilledAccept() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("group-billing-payment-page").first().$(TestBenchElement.class).id("pageContent").$("group-bill-payment-component").first().$(ButtonElement.class).get(2);
 	}
-
 	protected ButtonElement reconcile() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("group-billing-payment-page").first().$(TestBenchElement.class).id("pageContent").$("group-bill-payment-component").first().$(ButtonElement.class).get(5);
 	}
-
 	protected ButtonElement reconcileAccept() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("group-billing-payment-page").first().$(TestBenchElement.class).id("pageContent").$("group-bill-payment-component").first().$(ButtonElement.class).get(4);
 	}
-
 	protected ButtonElement processBill() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("group-billing-payment-page").first().$(TestBenchElement.class).id("pageContent").$("group-bill-payment-component").first().$(ButtonElement.class).get(6);
 	}
-
 	protected ButtonElement processBillAccept() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("group-billing-payment-page").first().$(TestBenchElement.class).id("pageContent").$("group-bill-payment-component").first().$(ButtonElement.class).get(5);
 	}
-
 	protected ButtonElement suspenseFunding() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("group-billing-payment-page").first().$(TestBenchElement.class).id("pageContent").$("group-bill-payment-component").first().$(ButtonElement.class).first();
 	}
-
 	protected ButtonElement suspenseFundingAccept() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("group-billing-payment-page").first().$(TestBenchElement.class).id("pageContent").$("group-bill-payment-component").first().$(TestBenchElement.class).id("GroupBillSection").$(ButtonElement.class).first();
 	}
-
 	protected TestBenchElement billInfo(){
 		return $( TestBenchElement.class ).id( "viewContent" ).$( "scenario-component" ).first().$( TestBenchElement.class ).id( "fieldLayout" ).$( "group-billing-payment-page" ).first().$( TestBenchElement.class ).id( "pageContent" ).$( "search-component" ).first().$(TestBenchElement.class).id("BillInfo");
 	}
 
-	protected WebElement policyPaidToDate() {
-		return $( TestBenchElement.class ).id( "viewContent" ).$( "scenario-component" ).first().$( TestBenchElement.class ).id( "titleLayout").$( TestBenchElement.class).id( "summaryTable").$( TestBenchElement.class).id( "componentContent" ).findElements( By.className( "summary-column-value" )).get( 10 );}
-
-
-	protected DatePickerElement date (){
-		return $( TestBenchElement.class ).id( "viewContent" ).$( "scenario-component" ).first().$( TestBenchElement.class ).id( "fieldLayout" ).$("transactions-view-page").first().$(DatePickerElement.class).first();
-	}
-	protected ButtonElement cycle (){
-		return $( TestBenchElement.class ).id( "viewContent" ).$( "scenario-component" ).first().$( TestBenchElement.class ).id( "fieldLayout" ).$("transactions-view-page").first().$(ButtonElement.class).last();
-	}
 
 
 

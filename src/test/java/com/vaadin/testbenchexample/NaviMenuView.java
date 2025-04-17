@@ -17,6 +17,9 @@ import org.openqa.selenium.WebElement;
 //@Attribute(name="class",value="navi-item page-item")
 public class NaviMenuView extends TestBenchElement {
 
+	// main
+
+
 	protected TestBenchElement getAddresses() {
 
 		return $( TestBenchElement.class ).id( "navi-menu" ).$("IRON-ICON").get( 5 );
@@ -33,11 +36,21 @@ public class NaviMenuView extends TestBenchElement {
 
 		return $( TestBenchElement.class ).id( "navi-menu").$( IconElement.class ).first();
 	}
-
 	protected TestBenchElement getSuspense() {
 
 		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 25 );
 	}
+	protected TestBenchElement getBankInformation() {
+
+		return $( TestBenchElement.class ).id( "navi-menu" ).$("IRON-ICON").get(3);
+	}
+	protected TestBenchElement getBankInformationAccept() {
+
+		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 4 );
+	}
+
+	// Policy
+
 	protected TestBenchElement getApplication() {
 
 		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 1 );
@@ -72,27 +85,10 @@ public class NaviMenuView extends TestBenchElement {
 
 		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get(13 );
 	}
-//SPDA
-	protected TestBenchElement getDocumentSPDA() {
-
-		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 13 );
-	}
-
 	protected TestBenchElement getNewBusiness() {
 
 		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 30 );
 	}
-
-	protected TestBenchElement getBankInformation() {
-
-		return $( TestBenchElement.class ).id( "navi-menu" ).$("IRON-ICON").get(3);
-	}
-	protected TestBenchElement getBankInformationAccept() {
-
-		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 4 );
-	}
-
-
 	protected TestBenchElement getFamily() {
 
 		return $( TestBenchElement.class ).id( "navi-menu").$("IRON-ICON").last();
@@ -101,26 +97,16 @@ public class NaviMenuView extends TestBenchElement {
 
 		return $( TestBenchElement.class ).id( "navi-menu").$( IconElement.class ).last();
 	}
-
 	protected TestBenchElement checkIGO() {
 
 		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 25 );
 	}
-	//SPDA
-	protected TestBenchElement checkSpdaIGO() {
-
-		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 20 );
-	}
-	protected TestBenchElement suspenseSpda() {
-
-		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 18 );
-	}
+	// Suspense
 
 	protected TestBenchElement suspense() {
 
 		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 30 );
 	}
-
 	protected TestBenchElement groupSuspense() {
 
 		return $( TestBenchElement.class ).id( "navi-menu" ).$("IRON-ICON").get( 21 );
@@ -134,6 +120,8 @@ public class NaviMenuView extends TestBenchElement {
 		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 24 );
 	}
 
+	// Groups
+
 	protected TestBenchElement groupBills() {
 
 		return $( TestBenchElement.class ).id( "navi-menu" ).$("IRON-ICON").get( 6 );
@@ -142,12 +130,12 @@ public class NaviMenuView extends TestBenchElement {
 
 		return $( TestBenchElement.class ).id( "navi-menu" ).$("IRON-ICON").get( 9 );
 	}
-
 	protected TestBenchElement groupBillsAccept() {
 
 		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 9 );
 	}
 
+	// Transactions
 
 	protected TestBenchElement transactionsWL() {
 
@@ -170,14 +158,6 @@ public class NaviMenuView extends TestBenchElement {
 		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 30 );
 	}
 
-	protected TestBenchElement getReport() {
-
-		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 7 );
-	}
-	protected TestBenchElement getResult() {
-
-		return $( TestBenchElement.class ).id( "navi-menu" ).$("IRON-ICON").get( 5 );
-	}
 	protected TestBenchElement policyTransactionsAccept() {
 
 		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 33 );

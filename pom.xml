@@ -224,6 +224,7 @@
                         <include>BaseLoginTest.java</include>
                         <include>AddFamilyAcceptIT.java</include>
                         <include>AddFamilyPfixIT.java</include>
+                        <include>PolicyBillIT.java</include>
                     </includes>
                     <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
                     <redirectTestOutputToFile>true</redirectTestOutputToFile>
@@ -252,6 +253,7 @@
                         <include>BaseLoginTest.java</include>
                         <include>AddFamilyAcceptIT.java</include>
                         <include>AddFamilyPfixIT.java</include>
+                        <include>PolicyBillIT.java</include>
                     </includes>
                     <trimStackTrace>false</trimStackTrace>
                     <enableAssertions>true</enableAssertions>
