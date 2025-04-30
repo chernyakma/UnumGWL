@@ -27,13 +27,13 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public abstract class BaseLoginTest extends TestBenchTestCase {
 
-/*
+
 
 		@After
 	public void tearDown() throws Exception {
 			getDriver().quit();
 	}
-*/
+
 	@Before
 	public void setUp() {
 		// Configure download preferences for Chrome
@@ -46,7 +46,7 @@ public abstract class BaseLoginTest extends TestBenchTestCase {
 
 		// Set Chrome options
 		ChromeOptions options = new ChromeOptions();
-//		options.addArguments("--headless", "--disable-gpu");
+		options.addArguments("--headless", "--disable-gpu");
 		options.setExperimentalOption("prefs", prefs);
 		WebDriverManager.chromedriver().setup();
 //		WebDriver driver = new ChromeDriver();
@@ -87,9 +87,9 @@ public abstract class BaseLoginTest extends TestBenchTestCase {
 		$( TextFieldElement.class).first().setValue( "jBond");
 		$( PasswordFieldElement.class).first().setValue( "JBond007");
 		$( ButtonElement.class).first().click();
-    */
+
 	//	testBed unumGWl4
-		getDriver().get("https://unumGWL5.testbed.calcfocus.net/achieve/login");
+		getDriver().get("https://unumGWL.testbed.calcfocus.net/achieve/login");
 
 		WebElement usernameFieldElement = findElement( By.id( "vaadinLoginUsername" ));
 //		usernameFieldElement.click();
@@ -98,7 +98,7 @@ public abstract class BaseLoginTest extends TestBenchTestCase {
 //		passwordFieldElement.click();
 		passwordFieldElement.sendKeys( "JBond007" );
 		$( ButtonElement.class).first().click();
-
+*/
 //		WebElement buttonElement = findElement( By.id( "signInSubmitButton" ));
 //		TestBenchElement loginButton = ( TestBenchElement )findElement( By.name( "signInSubmitButton" ));
 //		loginButton.click();
@@ -106,7 +106,7 @@ public abstract class BaseLoginTest extends TestBenchTestCase {
 //		$( TextFieldElement.class).id("vaadinLoginUsername").setValue( "jBond");
 //		$( PasswordFieldElement.class).id("vaadinLoginPassword").setValue( "JBond007");
 //		$( ButtonElement.class).first().click();
-	/*	getDriver().get("https://test.everlake.calcfocus.net/achieve/oauth2/login/code/cognito");
+		getDriver().get("https://acpt-gwl-nonsso.unum.calcfocus.net/achieve/oauth2/login/code/cognito");
 
 		WebElement usernameFieldElement = findElement( By.id( "signInFormUsername" ));
 		usernameFieldElement.click();
@@ -123,7 +123,7 @@ public abstract class BaseLoginTest extends TestBenchTestCase {
 
 
 
-*/
+
 
 
 	}

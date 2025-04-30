@@ -113,7 +113,7 @@ public class NaviMenuView extends TestBenchElement {
 	}
 	protected TestBenchElement policySuspense() {
 
-		return $( TestBenchElement.class ).id( "navi-menu" ).$("IRON-ICON").get( 27 );
+		return $( TestBenchElement.class ).id( "navi-menu" ).$("IRON-ICON").get( 30 );
 	}
 	protected TestBenchElement groupSuspenseAccept() {
 
@@ -164,7 +164,7 @@ public class NaviMenuView extends TestBenchElement {
 	}
 	protected TestBenchElement policyTransactions() {
 
-		return $( TestBenchElement.class ).id( "navi-menu" ).$("IRON-ICON").get( 21 );
+		return $( TestBenchElement.class ).id( "navi-menu" ).$("IRON-ICON").get( 24 );
 	}
 
 }

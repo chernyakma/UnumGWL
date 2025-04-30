@@ -219,11 +219,9 @@
                 <version>3.5.2</version>
                 <configuration>
                     <includes>
-                        <include>GroupListBillAcceptIT.java</include>
                         <include>GroupListBillIT.java</include>
                         <include>BaseLoginTest.java</include>
-                        <include>AddFamilyAcceptIT.java</include>
-                        <include>AddFamilyPfixIT.java</include>
+                        <include>AddFamilyIT.java</include>
                         <include>PolicyBillIT.java</include>
                     </includes>
                     <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
@@ -248,11 +246,9 @@
                 </executions>
                 <configuration>
                     <includes>
-                        <include>GroupListBillAcceptIT.java</include>
                         <include>GroupListBillIT.java</include>
                         <include>BaseLoginTest.java</include>
-                        <include>AddFamilyAcceptIT.java</include>
-                        <include>AddFamilyPfixIT.java</include>
+                        <include>AddFamilyIT.java</include>
                         <include>PolicyBillIT.java</include>
                     </includes>
                     <trimStackTrace>false</trimStackTrace>

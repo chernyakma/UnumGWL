@@ -18,17 +18,17 @@ public class PolicyBillIT extends BaseLoginTest {
         VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
         getSelectButton.getSelectItem().selectByText("Search Policy");
         SearchComponentView getPolicy = $(SearchComponentView.class).first();
-        getPolicy.searchByPolicy().sendKeys("GWL10000209");
+        getPolicy.searchByPolicy().sendKeys("GWL10405867");
         getPolicy.searchButton().click();
-        getPolicy.family().getCell("GWL10000209").click();
+        getPolicy.family().getCell("GWL10405867").click();
         NaviMenuView getFamily = $(NaviMenuView.class).first();
         NaviMenuView addSuspense = $(NaviMenuView.class).first();
         addSuspense.policySuspense().click();
         ScenarioView addSuspenseButton = $(ScenarioView.class).first();
         addSuspenseButton.addSuspenceButton().click();
         EntryDialogContent suspenseSource = $(EntryDialogContent.class).first();
-        suspenseSource.suspenseAmount().setValue("76.69");
-        Assertions.assertEquals("76.69", suspenseSource.suspenseAmount().getValue());
+        suspenseSource.suspenseAmount().setValue("191.30");
+        Assertions.assertEquals("191.30", suspenseSource.suspenseAmount().getValue());
         suspenseSource.suspenseSource().selectByText("Check");
         Assertions.assertEquals("Check", suspenseSource.suspenseSource().getSelectedText());
         suspenseSource.depositAccount().selectByText("General Premium");
@@ -41,9 +41,9 @@ public class PolicyBillIT extends BaseLoginTest {
         VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
         getSelectButton.getSelectItem().selectByText("Search Policy");
         SearchComponentView getPolicy = $(SearchComponentView.class).first();
-        getPolicy.searchByPolicy().sendKeys("GWL10000209");
+        getPolicy.searchByPolicy().sendKeys("GWL10433294");
         getPolicy.searchButton().click();
-        getPolicy.family().getCell("GWL10000209").click();
+        getPolicy.family().getCell("GWL10433294").click();
         NaviMenuView transaction = $(NaviMenuView.class).first();
         transaction.policyTransactions().click();
         ScenarioView premiumTransaction = $(ScenarioView.class).first();
@@ -54,7 +54,7 @@ public class PolicyBillIT extends BaseLoginTest {
         EntryDialogContent selectTransaction = $(EntryDialogContent.class).first();
         selectTransaction.transactionType().selectByText("Premium");
         EntryDialogContent premium = $(EntryDialogContent.class).first();
-        premium.premiumAmount().sendKeys(Keys.chord(Keys.CONTROL, "a"), "76.69");
+        premium.premiumAmount().sendKeys(Keys.chord(Keys.CONTROL, "a"), "191.30");
  //       premium.billingMonths().sendKeys(Keys.chord(Keys.CONTROL, "a"), "1");
  //       TransactionPopUpPageView notes = $(TransactionPopUpPageView.class).first();
         premium.notes().sendKeys("123");
@@ -72,7 +72,20 @@ public class PolicyBillIT extends BaseLoginTest {
         String updatedText = transactionsPage.policyPaidToDate().getText();
         LocalDate updatedDate = LocalDate.parse(updatedText, formatter);
 
-        Assertions.assertEquals(initialPaidToDate.plusMonths(3), updatedDate);
+        Assertions.assertEquals(initialPaidToDate.plusMonths(1), updatedDate);
+        ScenarioView deleteTransaction = $(ScenarioView.class).first();
+        deleteTransaction.reverseAddRiderTransactionButton().click();
+ //       VaadinConfirmDialogView ok = $(VaadinConfirmDialogView.class).first();
+        VaadinDialogView ok = $(VaadinDialogView.class).first();
+        ok.getConfirmButton().click();
+        ScenarioView deleteLoanTransaction = $(ScenarioView.class).first();
+        waitUntil(driver -> !deleteTransaction.progressBar().isDisplayed(), 80);
+
+//		ScenarioView deleteLoanTransaction = $(ScenarioView.class).first();
+        deleteLoanTransaction.deleteLoanTransactionButton().click();
+        VaadinDialogView confirmation = $(VaadinDialogView.class).first();
+        confirmation.getDeleteButton().click();
+
 
     }
 
@@ -83,9 +96,9 @@ public class PolicyBillIT extends BaseLoginTest {
         getSelectButton.getSelectItem().selectByText("Search Policy");
 
         SearchComponentView getPolicy = $(SearchComponentView.class).first();
-        getPolicy.searchByPolicy().sendKeys("GWL10000689");
+        getPolicy.searchByPolicy().sendKeys("GWL10413064");
         getPolicy.searchButton().click();
-        getPolicy.family().getCell("GWL10000689").click();
+        getPolicy.family().getCell("GWL10413064").click();
 
         NaviMenuView transaction = $(NaviMenuView.class).first();
         transaction.policyTransactions().click();
