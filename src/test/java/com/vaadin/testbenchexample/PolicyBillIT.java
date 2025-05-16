@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Keys;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -115,6 +116,11 @@ public class PolicyBillIT extends BaseLoginTest {
         //       LocalDate newDate = currentDate.plusMonths(1);
         LocalDate originalDate = parseFlexibleDate(originalDateText);
         LocalDate newDate = originalDate.plusDays(1);
+        if (newDate.getDayOfWeek() == DayOfWeek.SATURDAY) {
+            newDate = newDate.plusDays(2);
+        } else if (newDate.getDayOfWeek() == DayOfWeek.SUNDAY) {
+            newDate = newDate.plusDays(1);
+        }
         payPremium.date().setDate(newDate);
 
         payPremium.cycle().click();
