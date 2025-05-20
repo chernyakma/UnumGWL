@@ -232,6 +232,7 @@ public class AddFamilyIT extends BaseLoginTest {
 	public void addBeneficiary() throws InterruptedException {
 		VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
 		getSelectButton.getSelectItem().selectByText("Search Policy");
+		Thread.sleep(3_000);
 		SearchComponentView getPolicy = $(SearchComponentView.class).first();
 		getPolicy.searchByPolicy().sendKeys("GWL10405863");
 		getPolicy.searchButton().click();
