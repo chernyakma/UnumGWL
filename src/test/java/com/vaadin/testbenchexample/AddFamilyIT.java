@@ -124,6 +124,7 @@ public class AddFamilyIT extends BaseLoginTest {
 
 		VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
 		getSelectButton.getSelectItem().selectByText("Search Family");
+		Thread.sleep(3_000);
 		SearchComponentView getFamily = $(SearchComponentView.class).first();
 		getFamily.searchBySSN().sendKeys("511-37-7926");
 		getFamily.searchButton().click();
