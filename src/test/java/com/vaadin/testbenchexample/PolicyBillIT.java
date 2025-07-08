@@ -19,6 +19,7 @@ public class PolicyBillIT extends BaseLoginTest {
         VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
         getSelectButton.getSelectItem().selectByText("Search Policy");
         SearchComponentView getPolicy = $(SearchComponentView.class).first();
+        waitUntil(driver -> getPolicy.isDisplayed(), 60);
         getPolicy.searchByPolicy().sendKeys("GWL10405867");
         getPolicy.searchButton().click();
         getPolicy.family().getCell("GWL10405867").click();
@@ -42,6 +43,7 @@ public class PolicyBillIT extends BaseLoginTest {
         VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
         getSelectButton.getSelectItem().selectByText("Search Policy");
         SearchComponentView getPolicy = $(SearchComponentView.class).first();
+        waitUntil(driver -> getPolicy.isDisplayed(), 60);
         getPolicy.searchByPolicy().sendKeys("GWL10433294");
         getPolicy.searchButton().click();
         getPolicy.family().getCell("GWL10433294").click();
@@ -95,8 +97,8 @@ public class PolicyBillIT extends BaseLoginTest {
 
         VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
         getSelectButton.getSelectItem().selectByText("Search Policy");
-
         SearchComponentView getPolicy = $(SearchComponentView.class).first();
+        waitUntil(driver -> getPolicy.isDisplayed(), 60);
         getPolicy.searchByPolicy().sendKeys("GWL10413064");
         getPolicy.searchButton().click();
         getPolicy.family().getCell("GWL10413064").click();
