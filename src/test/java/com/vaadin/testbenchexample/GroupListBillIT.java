@@ -19,7 +19,7 @@ public class GroupListBillIT extends BaseLoginTest {
 	public void addManualGroupBill() throws InterruptedException {
 		VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
 		getSelectButton.getSelectItem().selectByText("Search Group");
-		;
+		waitUntil(driver -> $(SearchComponentView.class).exists(), 80);
 		SearchComponentView getGroup = $(SearchComponentView.class).first();
 		getGroup.searchByGroup().sendKeys("00638101");
 		getGroup.searchButton().click();
@@ -49,6 +49,7 @@ public class GroupListBillIT extends BaseLoginTest {
 	public void suspense() throws InterruptedException {
 		VaadinSelectView getSelectButton = $( VaadinSelectView.class ).first();
 		getSelectButton.getSelectItem().selectByText("Search Group");
+		waitUntil(driver -> $(SearchComponentView.class).exists(), 80);
 		SearchComponentView getGroup = $( SearchComponentView.class ).first();
 		getGroup.searchByGroup().sendKeys( "00638101" );
 		getGroup.searchButton().click();
@@ -92,7 +93,8 @@ public class GroupListBillIT extends BaseLoginTest {
 	@Test
 	public void payListBill()throws InterruptedException, IOException {
 		VaadinSelectView getSelectButton = $( VaadinSelectView.class ).first();
-		getSelectButton.getSelectItem().selectByText("Search Group");;
+		getSelectButton.getSelectItem().selectByText("Search Group");
+		waitUntil(driver -> $(SearchComponentView.class).exists(), 80);
 		SearchComponentView getGroup = $( SearchComponentView.class ).first();
 		getGroup.searchByGroup().sendKeys( "00638101" );
 		getGroup.searchButton().click();
