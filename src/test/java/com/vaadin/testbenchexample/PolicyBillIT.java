@@ -18,7 +18,7 @@ public class PolicyBillIT extends BaseLoginTest {
     public void suspense() throws InterruptedException {
         VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
         getSelectButton.getSelectItem().selectByText("Search Policy");
-        waitUntil(driver -> $(SearchComponentView.class).exists(), 80);
+        waitUntil(driver -> $(SearchComponentView.class).exists(), 100);
         SearchComponentView getPolicy = $(SearchComponentView.class).first();
         waitUntil(driver -> getPolicy.isDisplayed(), 20);
         getPolicy.searchByPolicy().sendKeys("GWL10405867");
@@ -36,7 +36,22 @@ public class PolicyBillIT extends BaseLoginTest {
         Assertions.assertEquals("Check", suspenseSource.suspenseSource().getSelectedText());
         suspenseSource.depositAccount().selectByText("General Premium");
         suspenseSource.processButton().click();
+        Thread.sleep(3_000);
+        NaviMenuView transaction = $(NaviMenuView.class).first();
+        transaction.policyTransactions().click();
+        ScenarioView deleteTransaction = $(ScenarioView.class).first();
+        deleteTransaction.reverseAddRiderTransactionButton().click();
+        VaadinDialogView confirmation = $(VaadinDialogView.class).first();
+        confirmation.getDeleteButton().click();
+        waitUntil(driver -> !deleteTransaction.progressBar().isDisplayed(), 80);
+        deleteTransaction.deleteFirstTransactionButton().click();
+        waitUntil(driver -> $(VaadinDialogView.class).exists(), 100);
+        VaadinDialogView confirm = $(VaadinDialogView.class).first();
+        confirm.getDeleteButton().click();
+
+
  //       ScenarioView checkSuspence = $(ScenarioView.class).first();
+
     }
 
     @Test
