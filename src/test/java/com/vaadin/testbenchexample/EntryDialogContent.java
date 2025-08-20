@@ -18,8 +18,14 @@ import com.vaadin.flow.component.upload.testbench.UploadElement;
 import com.vaadin.testbench.TestBenchElement;
 import com.vaadin.testbench.elementsbase.Element;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.util.Random;
+
 @Element( "entry-dialog-content" )
 public class EntryDialogContent extends TestBenchElement {
+
 
 	// mainButton
 	protected ButtonElement okButton (){
@@ -28,6 +34,9 @@ public class EntryDialogContent extends TestBenchElement {
 	}
 	protected ButtonElement closeButton (){
 		return $(ButtonElement.class).last();
+	}
+	protected ButtonElement saveAndOpenButton (){
+		return $(ButtonElement.class).get(1);
 	}
 
 	protected ButtonElement processButton (){
@@ -326,7 +335,58 @@ public class EntryDialogContent extends TestBenchElement {
 	protected ListBoxElement transactionType()
 	{return $(TestBenchElement.class).id( "mainContent" ).$("transaction-popup-page").first().$( SelectElement.class ).id( "typeSelect" ).$(ListBoxElement.class).first();}
 
+//Claims
+     protected InputTextElement getClaimNumber() {
 
+	 return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( TextFieldElement.class ).id( "ClaimNumber" ).$(InputTextElement.class).first();
+     }
+
+	protected ListBoxElement getClaimType() {
+
+		return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( SelectElement.class ).id( "Type").$(ListBoxElement.class).first();
+	}
+	protected DatePickerElement getIncurredDate() {
+
+		return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( DatePickerElement.class ).id( "IncurredDate");
+	}
+	protected DatePickerElement getReceivedDate() {
+
+		return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( DatePickerElement.class ).id( "ReceivedDate");
+	}
+	protected ListBoxElement getClaimCause() {
+
+		return $( TestBenchElement.class ).id( "S1").$( SelectElement.class ).id( "CauseType").$(ListBoxElement.class).first();
+	}
+	protected ListBoxElement getEventType() {
+
+		return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( SelectElement.class ).id( "Type").$(ListBoxElement.class).first();
+	}
+	protected ListBoxElement getPayee() {
+
+		return $( TestBenchElement.class ).id( "S1").$( SelectElement.class ).id( "PayeeGUID").$(ListBoxElement.class).first();
+	}
+	protected ButtonElement editDecision (){
+
+		return $( TestBenchElement.class ).id( "S1").$( TestBenchElement.class ).id( "PaymentLinesTable").$(ButtonElement.class).get(1);
+	}
+	protected ListBoxElement getClaimDecision() {
+
+		return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( SelectElement.class ).id( "Decision").$(ListBoxElement.class).first();
+	}
+	protected ListBoxElement getDenialClaimReason() {
+
+		return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( SelectElement.class ).id("DenialReason").$(ListBoxElement.class).first();
+	}
+
+
+
+
+	  public void addRundomCaseNumber() {
+
+		Random random = new Random();
+		int randomNumber = 10000 + random.nextInt( 90000 );  // Generate a random number between 100000000 and 900000000
+		getClaimNumber().sendKeys( String.valueOf( randomNumber ) );
+	  }
 
 	public void addBeneficiary (String firstName,String lastName,String ssn,String email,String phoneNumber){
 		firstName().sendKeys(firstName);

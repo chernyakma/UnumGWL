@@ -23,6 +23,7 @@ import javassist.bytecode.stackmap.TypeData;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.Random;
 
 @Element( "scenario-view" )
 //@Element( "scenario-component" )
@@ -176,6 +177,9 @@ public class ScenarioView extends TestBenchElement {
 	protected ButtonElement reverseLoanTransactionButton() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("transactions-view-page").first().$(TestBenchElement.class).id("content").$("search-component").first().$(ButtonElement.class).get(1);
 	}
+	protected ButtonElement reverseSecondTransactionButton() {
+		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("transactions-view-page").first().$(TestBenchElement.class).id("content").$("search-component").first().$(ButtonElement.class).get(3);
+	}
 	protected ButtonElement reverseAddRiderTransactionButton() {
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("transactions-view-page").first().$(TestBenchElement.class).id("content").$("search-component").first().$(ButtonElement.class).get(1);
 	}
@@ -289,7 +293,21 @@ public class ScenarioView extends TestBenchElement {
 	}
 
 
+  //claims
+  protected ButtonElement getAddClaimsButton() {
 
+	  return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("claim-page").first().$( TestBenchElement.class ).id( "pageContent" ).$( "search-component" ).first().$(TestBenchElement.class).id("tools").$(ButtonElement.class).first();
+
+  }
+	protected GridElement getClaim() {
+
+		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("claim-page").first().$( TestBenchElement.class ).id( "pageContent" ).$( "search-component" ).first().$(GridElement.class).first();
+
+	}
+	protected WebElement claimStatus() {
+
+		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("titleLayout").$(TestBenchElement.class).id("summaryTable").$(TestBenchElement.class).id("componentContent").findElements(By.className("summary-column-value")).get(5);
+	}
 
 }
 
