@@ -16,22 +16,32 @@ public class PolicyBillIT extends BaseLoginTest {
     protected final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy", Locale.ENGLISH);
     @Test
     public void suspense() throws InterruptedException {
+ /*
         VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
         getSelectButton.getSelectItem().selectByText("Search Policy");
         waitUntil(driver -> $(SearchComponentView.class).exists(), 100);
         SearchComponentView getPolicy = $(SearchComponentView.class).first();
         waitUntil(driver -> getPolicy.isDisplayed(), 20);
-        getPolicy.searchByPolicy().sendKeys("GWL10405867");
+        getPolicy.searchByPolicy().sendKeys("GWL10405871");
         getPolicy.searchButton().click();
-        getPolicy.family().getCell("GWL10405867").click();
-        NaviMenuView getFamily = $(NaviMenuView.class).first();
+        getPolicy.family().getCell("GWL10405871").click();
+
+  */
+        QuickSearchView getPolicy = $ (QuickSearchView.class).first();
+        getPolicy.searchByPolicy().sendKeys("GWL10405871");
+        getPolicy.searchByPolicy().sendKeys(Keys.ARROW_DOWN);
+        getPolicy.searchByPolicy().sendKeys(Keys.ENTER);
+        ScenarioView policyPage = $(ScenarioView.class).first();
+       waitUntil(driver -> $(ScenarioView.class).exists(), 100);
+
+//        NaviMenuView getFamily = $(NaviMenuView.class).first();
         NaviMenuView addSuspense = $(NaviMenuView.class).first();
         addSuspense.policySuspense().click();
         ScenarioView addSuspenseButton = $(ScenarioView.class).first();
         addSuspenseButton.addSuspenceButton().click();
         EntryDialogContent suspenseSource = $(EntryDialogContent.class).first();
-        suspenseSource.suspenseAmount().setValue("191.30");
-        Assertions.assertEquals("191.30", suspenseSource.suspenseAmount().getValue());
+        suspenseSource.suspenseAmount().setValue("194.55");
+        Assertions.assertEquals("194.55", suspenseSource.suspenseAmount().getValue());
         suspenseSource.suspenseSource().selectByText("Check");
         Assertions.assertEquals("Check", suspenseSource.suspenseSource().getSelectedText());
         suspenseSource.depositAccount().selectByText("General Premium");

@@ -308,6 +308,10 @@ public class ScenarioView extends TestBenchElement {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("titleLayout").$(TestBenchElement.class).id("summaryTable").$(TestBenchElement.class).id("componentContent").findElements(By.className("summary-column-value")).get(5);
 	}
+	//policy
+	protected TextFieldElement insuredName (){
+		return $( TestBenchElement.class ).id( "viewContent" ).$( "scenario-component" ).first().$( TestBenchElement.class ).id( "fieldLayout" ).$(TestBenchElement.class).id( "InsuredSection" ).$(TextFieldElement.class).id( "PrimaryInsuredFullName" );
+	}
 
 }
 
