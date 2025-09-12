@@ -128,7 +128,7 @@ public class PolicyBillIT extends BaseLoginTest {
 
     @Test
     public void payEFT() {
-
+/*
         VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
         getSelectButton.getSelectItem().selectByText("Search Policy");
         waitUntil(driver -> $(SearchComponentView.class).exists(), 80);
@@ -137,6 +137,12 @@ public class PolicyBillIT extends BaseLoginTest {
         getPolicy.searchByPolicy().sendKeys("GWL10413064");
         getPolicy.searchButton().click();
         getPolicy.family().getCell("GWL10413064").click();
+*/
+        QuickSearchView getPolicy = $ (QuickSearchView.class).first();
+        getPolicy.searchByPolicy().setValue("GWL10413064");
+        getPolicy.searchByPolicy().sendKeys(Keys.ARROW_DOWN);
+        getPolicy.searchByPolicy().sendKeys(Keys.ENTER);
+        waitUntil(driver -> $(ScenarioView.class).exists(), 100);
 
         NaviMenuView transaction = $(NaviMenuView.class).first();
         transaction.policyTransactions().click();
