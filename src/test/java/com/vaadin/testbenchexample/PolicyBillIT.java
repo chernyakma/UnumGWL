@@ -28,11 +28,10 @@ public class PolicyBillIT extends BaseLoginTest {
 
   */
         QuickSearchView getPolicy = $ (QuickSearchView.class).first();
-        getPolicy.searchByPolicy().sendKeys("GWL10405871");
+        getPolicy.searchByPolicy().setValue("GWL10405871");
         getPolicy.searchByPolicy().sendKeys(Keys.ARROW_DOWN);
         getPolicy.searchByPolicy().sendKeys(Keys.ENTER);
-        ScenarioView policyPage = $(ScenarioView.class).first();
-       waitUntil(driver -> $(ScenarioView.class).exists(), 100);
+        waitUntil(driver -> $(ScenarioView.class).exists(), 100);
 
 //        NaviMenuView getFamily = $(NaviMenuView.class).first();
         NaviMenuView addSuspense = $(NaviMenuView.class).first();
@@ -66,6 +65,7 @@ public class PolicyBillIT extends BaseLoginTest {
 
     @Test
     public void payDirectBill() throws InterruptedException {
+     /*
         VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
         getSelectButton.getSelectItem().selectByText("Search Policy");
         waitUntil(driver -> $(SearchComponentView.class).exists(), 80);
@@ -74,6 +74,13 @@ public class PolicyBillIT extends BaseLoginTest {
         getPolicy.searchByPolicy().sendKeys("GWL10433294");
         getPolicy.searchButton().click();
         getPolicy.family().getCell("GWL10433294").click();
+
+      */
+        QuickSearchView getPolicy = $ (QuickSearchView.class).first();
+        getPolicy.searchByPolicy().setValue("GWL10433294");
+        getPolicy.searchByPolicy().sendKeys(Keys.ARROW_DOWN);
+        getPolicy.searchByPolicy().sendKeys(Keys.ENTER);
+        waitUntil(driver -> $(ScenarioView.class).exists(), 100);
         NaviMenuView transaction = $(NaviMenuView.class).first();
         transaction.policyTransactions().click();
         ScenarioView premiumTransaction = $(ScenarioView.class).first();
