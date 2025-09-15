@@ -29,8 +29,9 @@ public class PolicyBillIT extends BaseLoginTest {
   */
         QuickSearchView getPolicy = $ (QuickSearchView.class).first();
         getPolicy.searchByPolicy().setValue("GWL10405871");
-        getPolicy.searchByPolicy().sendKeys(Keys.ARROW_DOWN);
-        getPolicy.searchByPolicy().sendKeys(Keys.ENTER);
+
+//        getPolicy.searchByPolicy().sendKeys(Keys.ARROW_DOWN);
+ //       getPolicy.searchByPolicy().sendKeys(Keys.ENTER);
         waitUntil(driver -> $(ScenarioView.class).exists(), 100);
 
 //        NaviMenuView getFamily = $(NaviMenuView.class).first();
@@ -78,8 +79,8 @@ public class PolicyBillIT extends BaseLoginTest {
       */
         QuickSearchView getPolicy = $ (QuickSearchView.class).first();
         getPolicy.searchByPolicy().setValue("GWL10433294");
-        getPolicy.searchByPolicy().sendKeys(Keys.ARROW_DOWN);
-        getPolicy.searchByPolicy().sendKeys(Keys.ENTER);
+//        getPolicy.searchByPolicy().sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN);
+//        getPolicy.searchByPolicy().sendKeys(Keys.ENTER);
         waitUntil(driver -> $(ScenarioView.class).exists(), 100);
         NaviMenuView transaction = $(NaviMenuView.class).first();
         transaction.policyTransactions().click();
@@ -140,8 +141,8 @@ public class PolicyBillIT extends BaseLoginTest {
 */
         QuickSearchView getPolicy = $ (QuickSearchView.class).first();
         getPolicy.searchByPolicy().setValue("GWL10413064");
-        getPolicy.searchByPolicy().sendKeys(Keys.ARROW_DOWN);
-        getPolicy.searchByPolicy().sendKeys(Keys.ENTER);
+//        getPolicy.searchByPolicy().sendKeys(Keys.ARROW_DOWN);
+//        getPolicy.searchByPolicy().sendKeys(Keys.ENTER);
         waitUntil(driver -> $(ScenarioView.class).exists(), 100);
 
         NaviMenuView transaction = $(NaviMenuView.class).first();
