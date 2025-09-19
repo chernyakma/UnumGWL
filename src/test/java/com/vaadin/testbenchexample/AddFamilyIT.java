@@ -359,7 +359,7 @@ public class AddFamilyIT extends BaseLoginTest {
 
 	@Test
 	public void addOtherRoles() throws InterruptedException {
-
+/*
 		VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
 		getSelectButton.getSelectItem().selectByText("Search Policy");
 		waitUntil(driver -> $(SearchComponentView.class).exists(), 80);
@@ -368,6 +368,12 @@ public class AddFamilyIT extends BaseLoginTest {
 		getPolicy.searchByPolicy().sendKeys("GWL10413068");
 		getPolicy.searchButton().click();
 		getPolicy.family().getCell("GWL10413068").click();
+*/
+		QuickSearchView getPolicy = $ (QuickSearchView.class).first();
+		getPolicy.searchByPolicy().setValue("GWL10413068");
+//        getPolicy.searchByPolicy().sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN);
+//        getPolicy.searchByPolicy().sendKeys(Keys.ENTER);
+		waitUntil(driver -> $(ScenarioView.class).exists(), 100);
 		NaviMenuView getOther = $(NaviMenuView.class).first();
 		getOther.otherRoles().click();
 		Thread.sleep(3_000);
