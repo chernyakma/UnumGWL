@@ -121,7 +121,8 @@ public class GroupListBillIT extends BaseLoginTest {
 		suspenseFunding.okFundButton().click();
 		ScenarioView payBill = $(ScenarioView.class).first();
 		payBill.processBillAccept().click();
-		Thread.sleep(3_000);
+		waitUntil(driver -> $(VaadinDialogView.class).exists(), 80);
+//		Thread.sleep(3_000);
 		VaadinDialogView confirm = $(VaadinDialogView.class).first();
 		confirm.getConfirmButton().click();
 		ScenarioView process = $(ScenarioView.class).first();
