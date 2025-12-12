@@ -27,7 +27,7 @@ import java.util.Random;
 public class EntryDialogContent extends TestBenchElement {
 
 
-	// mainButton
+	// mainButtons
 	protected ButtonElement okButton (){
 
 		return $(ButtonElement.class).first();
