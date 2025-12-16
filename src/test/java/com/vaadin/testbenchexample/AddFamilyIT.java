@@ -295,6 +295,26 @@ public class AddFamilyIT extends BaseLoginTest {
 		deleteBeneficiary.getDeleteFamilyBeneButton().click();
 		VaadinDialogView delete = $(VaadinDialogView.class).first();
 		delete.getDeleteButton().click();
+		deleteBeneficiary.policyNumber().getCell("GWL10405863").click();
+		NaviMenuView menu= $(NaviMenuView.class).first();
+//		menu.claimPolicy().click();
+		menu.policyTransactions().click();
+		ScenarioView transactions = $(ScenarioView.class).first();
+		transactions.reverseSecondTransactionButton().click();
+		waitUntil(driver -> $(VaadinDialogView.class).exists(), 120);
+		VaadinDialogView reverse = $(VaadinDialogView.class).first();
+		reverse.getConfirmButton().click();
+		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
+		transactions.deleteFirstTransactionButton().click();
+		waitUntil(driver -> $(VaadinDialogView.class).exists(), 120);
+		VaadinDialogView confirmDelete = $(VaadinDialogView.class).first();
+		confirmDelete.getDeleteButton().click();
+		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
+		transactions.deleteFirstTransactionButton().click();
+		VaadinDialogView save = $(VaadinDialogView.class).first();
+		save.getDeleteButton().click();
+		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
+
 
 	}
 
@@ -302,7 +322,7 @@ public class AddFamilyIT extends BaseLoginTest {
 	public void addNewOwner() throws InterruptedException {
 		VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
 		getSelectButton.getSelectItem().selectByText("Search Policy");
-		waitUntil(driver -> $(SearchComponentView.class).exists(), 80);
+		waitUntil(driver -> $(SearchComponentView.class).exists(), 100);
 		SearchComponentView getPolicy = $(SearchComponentView.class).first();
 		waitUntil(driver -> getPolicy.isDisplayed(), 20);
 		getPolicy.searchByPolicy().sendKeys("GWL10413071");
@@ -341,7 +361,7 @@ public class AddFamilyIT extends BaseLoginTest {
 		VaadinSelectOverlayView selectOwner =$(VaadinSelectOverlayView.class).first();
 
 
-		System.out.println(selectOwner.gender().getOptions());
+//		System.out.println(selectOwner.gender().getOptions());
 		selectOwner.gender().selectByText("Edward Tompson (***-**-2819)");
 
 
@@ -354,6 +374,25 @@ public class AddFamilyIT extends BaseLoginTest {
 		deleteOwner.getDeleteFamilyOwner().click();
 		VaadinDialogView delete = $(VaadinDialogView.class).first();
 		delete.getDeleteButton().click();
+		deleteOwner.policyNumber().getCell("GWL10413071").click();
+		NaviMenuView menu= $(NaviMenuView.class).first();
+//		menu.claimPolicy().click();
+		menu.policyTransactions().click();
+		ScenarioView transactions = $(ScenarioView.class).first();
+		transactions.reverseSecondTransactionButton().click();
+		waitUntil(driver -> $(VaadinDialogView.class).exists(), 120);
+		VaadinDialogView reverse = $(VaadinDialogView.class).first();
+		reverse.getConfirmButton().click();
+		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
+		transactions.deleteFirstTransactionButton().click();
+		waitUntil(driver -> $(VaadinDialogView.class).exists(), 120);
+		VaadinDialogView confirmDelete = $(VaadinDialogView.class).first();
+		confirmDelete.getDeleteButton().click();
+		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
+		transactions.deleteFirstTransactionButton().click();
+		VaadinDialogView save = $(VaadinDialogView.class).first();
+		save.getDeleteButton().click();
+		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
 
 	}
 
@@ -427,6 +466,27 @@ public class AddFamilyIT extends BaseLoginTest {
 		deleteRole.getDeleteFamilyOther().click();
 		VaadinDialogView save = $(VaadinDialogView.class).first();
 		save.getDeleteButton().click();
+
+		deleteRole.policyNumber().getCell("GWL10413068").click();
+		NaviMenuView menu= $(NaviMenuView.class).first();
+//		menu.claimPolicy().click();
+		menu.policyTransactions().click();
+		ScenarioView transactions = $(ScenarioView.class).first();
+		transactions.reverseSecondTransactionButton().click();
+		waitUntil(driver -> $(VaadinDialogView.class).exists(), 120);
+		VaadinDialogView reverse = $(VaadinDialogView.class).first();
+		reverse.getConfirmButton().click();
+		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
+		transactions.deleteFirstTransactionButton().click();
+		waitUntil(driver -> $(VaadinDialogView.class).exists(), 120);
+		VaadinDialogView confirmDelete = $(VaadinDialogView.class).first();
+		confirmDelete.getDeleteButton().click();
+		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
+		transactions.deleteFirstTransactionButton().click();
+		VaadinDialogView conf = $(VaadinDialogView.class).first();
+		conf.getDeleteButton().click();
+		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
+
 	}
 
 
