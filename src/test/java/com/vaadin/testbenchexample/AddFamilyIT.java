@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.Keys;
 
 public class AddFamilyIT extends BaseLoginTest {
 
@@ -20,20 +21,21 @@ public class AddFamilyIT extends BaseLoginTest {
 		family.groupID().openPopup();
 		family.groupID().selectByText("00638100");
 
-		family.addFamily();
+		family.addFamilyAccept();
 		Thread.sleep( 3_000 );
-		family.getGenderAccept().openPopup();
-		VaadinSelectOverlayView getGender=$(VaadinSelectOverlayView.class).first();
-		getGender.gender().selectByText("Male");
+		family.getGenderAccept().selectItemByIndex(1);
+//		family.getGenderAccept().openPopup();
+//		VaadinSelectOverlayView getGender=$(VaadinSelectOverlayView.class).first();
+//		getGender.genderAccept().selectByText("Male");
 
 		family.getDateOfBirth().setDate(LocalDate.of(1960, 10, 15));
 		family.getTobaccoUse().doubleClick();
 
-		family.getMarriageStatus().selectByText("Married");
-		family.getHealthStatus().selectByText("Exceptional");
-		family.getPhoneType1().selectByText("Mobile");
-		family.getPhoneType2().selectByText("Home");
-		family.getFullTimePartTime().selectByText("Full Time");
+		family.getMarriageStatusAccept().selectByText("Married");
+		family.getHealthStatusAccept().selectByText("Exceptional");
+		family.getPhoneType1Accept().selectByText("Mobile");
+		family.getPhoneType2Accept().selectByText("Home");
+		family.getFullTimePartTimeAccept().selectByText("Full Time");
 		Assertions.assertEquals("David", family.getFirstName().getValue());
 		Assertions.assertEquals("Palmer", family.getLastName().getValue());
 //		Assertions.assertEquals("Male", family.getGender().getSelectedText());
@@ -45,7 +47,7 @@ public class AddFamilyIT extends BaseLoginTest {
 	public void addSpouse() {
 
 		VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
-		getSelectButton.getSelectItem().selectByText("Search Family");
+		getSelectButton.getSelectItemAccept().selectByText("Search Family");
 		waitUntil(driver -> $(SearchComponentView.class).exists(), 80);
 		SearchComponentView getFamily = $(SearchComponentView.class).first();
 		waitUntil(driver -> getFamily.isDisplayed(), 20);
@@ -56,36 +58,38 @@ public class AddFamilyIT extends BaseLoginTest {
 		ScenarioView addMember = $(ScenarioView.class).first();
 		addMember.addMemberButton().click();
 		AddFamilyView family = $(AddFamilyView.class).first();
-		family.getRelationship().selectByText("Partner");
-		family.addSpouse();
+		family.getRelationshipAccept().selectByText("Partner");
+		family.addSpouseAccept();
 //		family.getSuffix().selectItemByIndex(2);
-		family.getSpouseGender().selectByText("Female");
+		family.getSpouseGenderAccept().selectByText("Female");
 		family.getDateOfBirth().setDate(LocalDate.of(1965, 01, 05));
 		family.getNonTobacco().doubleClick();
-		family.getMarriageStatus().selectByText("Married");
-		family.getHealthStatus().selectByText("Exceptional");
-		family.getPhoneType1().selectByText("Mobile");
-		family.getPhoneType2().selectByText("Home");
+		family.getMarriageStatusAccept().selectByText("Married");
+		family.getHealthStatusAccept().selectByText("Exceptional");
+		family.getPhoneType1Accept().selectByText("Mobile");
+		family.getPhoneType2Accept().selectByText("Home");
 
 		Assertions.assertEquals("Emma", family.getFirstName().getValue());
 		Assertions.assertEquals("Spouse", family.getLastName().getValue());
-		Assertions.assertEquals("Female", family.getSpouseGender().getSelectedText());
+		Assertions.assertEquals("Female", family.getSpouseGenderAccept().getSelectedText());
 //		Assertions.assertEquals("1/5/1965", family.getDateOfBirth().getInputValue());
 		family.getSaveButton().click();
 		family.FamilyButton().click();
+		VaadinConfirmDialogView leave=$(VaadinConfirmDialogView.class).first();
+		leave.getDeleteButton().click();
 		//	NaviMenuView getFamilybutton = $( NaviMenuView.class ).first();
 		//	getFamilybutton.getFamily().click();
 		ScenarioView deleteMember = $(ScenarioView.class).first();
-		deleteMember.getDeleteSpouseButton().click();
-		VaadinDialogView deleteSpouse = $(VaadinDialogView.class).first();
-		deleteSpouse.getDeleteButton().click();
+		deleteMember.getDeleteSpouseButtonAccept().click();
+		VaadinConfirmDialogView deleteSpouse = $(VaadinConfirmDialogView.class).first();
+		deleteSpouse.getSaveButton().click();
 
 	}
 
 	@Test
 	public void addFamilyMemberFromPolicy() {
 		VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
-		getSelectButton.getSelectItem().selectByText("Search Policy");
+		getSelectButton.getSelectItemAccept().selectByText("Search Policy");
 		waitUntil(driver -> $(SearchComponentView.class).exists(), 80);
 		SearchComponentView getPolicy = $(SearchComponentView.class).first();
 		waitUntil(driver -> getPolicy.isDisplayed(), 20);
@@ -93,33 +97,35 @@ public class AddFamilyIT extends BaseLoginTest {
 		getPolicy.searchButton().click();
 		getPolicy.family().getCell("GWL10433294").click();
 		NaviMenuView getFamily = $(NaviMenuView.class).first();
-		getFamily.getFamily().click();
+		getFamily.getFamilyAccept().click();
 		ScenarioView addMember = $(ScenarioView.class).first();
 		addMember.addMemberButton().click();
 		AddFamilyView family = $(AddFamilyView.class).first();
-		family.getRelationship().selectByText("Partner");
-		family.addSpouse();
+		family.getRelationshipAccept().selectByText("Partner");
+		family.addSpouseAccept();
 //		family.getSuffix().selectItemByIndex(2);
-		family.getSpouseGender().selectByText("Female");
+		family.getSpouseGenderAccept().selectByText("Female");
 		family.getDateOfBirth().setDate(LocalDate.of(1970, 01, 05));
 		family.getNonTobacco().doubleClick();
-		family.getMarriageStatus().selectByText("Married");
-		family.getHealthStatus().selectByText("Exceptional");
-		family.getPhoneType1().selectByText("Mobile");
-		family.getPhoneType2().selectByText("Home");
+		family.getMarriageStatusAccept().selectByText("Married");
+		family.getHealthStatusAccept().selectByText("Exceptional");
+		family.getPhoneType1Accept().selectByText("Mobile");
+		family.getPhoneType2Accept().selectByText("Home");
 
 		Assertions.assertEquals("Emma", family.getFirstName().getValue());
 		Assertions.assertEquals("Spouse", family.getLastName().getValue());
-		Assertions.assertEquals("Female", family.getSpouseGender().getSelectedText());
+		Assertions.assertEquals("Female", family.getSpouseGenderAccept().getSelectedText());
 //		Assertions.assertEquals("1/5/1970", family.getDateOfBirth().getInputValue());
 		family.getSaveButton().click();
 		family.FamilyButton().click();
+		VaadinConfirmDialogView leave=$(VaadinConfirmDialogView.class).first();
+		leave.getDeleteButton().click();
 		//	NaviMenuView getFamilybutton = $( NaviMenuView.class ).first();
 		//	getFamilybutton.getFamily().click();
 		ScenarioView deleteMember = $(ScenarioView.class).first();
-		deleteMember.getDeleteSpouseButton().click();
-		VaadinDialogView deleteSpouse = $(VaadinDialogView.class).first();
-		deleteSpouse.getDeleteButton().click();
+		deleteMember.getDeleteSpouseButtonAccept().click();
+		VaadinConfirmDialogView deleteSpouse = $(VaadinConfirmDialogView.class).first();
+		deleteSpouse.getSaveButton().click();
 
 	}
 
@@ -127,7 +133,7 @@ public class AddFamilyIT extends BaseLoginTest {
 	public void addBank() throws InterruptedException {
 
 		VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
-		getSelectButton.getSelectItem().selectByText("Search Family");
+		getSelectButton.getSelectItemAccept().selectByText("Search Family");
 		waitUntil(driver -> $(SearchComponentView.class).exists(), 80);
 		SearchComponentView getFamily = $(SearchComponentView.class).first();
 		waitUntil(driver -> getFamily.isDisplayed(), 20);
@@ -137,14 +143,14 @@ public class AddFamilyIT extends BaseLoginTest {
 		ScenarioView editMember = $(ScenarioView.class).first();
 		editMember.getEditFamilyButton().click();
 		NaviMenuView getBank = $(NaviMenuView.class).first();
-		getBank.getBankInformation().click();
+		getBank.getBankInformationAccept().click();
 		AddFamilyView addBankAccount = $(AddFamilyView.class).first();
 		addBankAccount.addBankButton().click();
 		EntryDialogContent bankAccount = $(EntryDialogContent.class).first();
 		bankAccount.addAccount("1234566789", "Norfolk", "051000017","Bank of America");
 		bankAccount.getAccountNumber().doubleClick();
-		bankAccount.getAccountType().selectByText( "Savings" );
-		bankAccount.getBankState().selectByText("VA");
+		bankAccount.getAccountTypeAccept().selectByText( "Savings" );
+		bankAccount.getBankStateAccept().selectByText("Virginia");
 		bankAccount.accountNumberEye().doubleClick();
 		Assertions.assertEquals("Bank of America", bankAccount.getFinancialInstitutionName().getValue());
 		Assertions.assertEquals("051000017", bankAccount.getRoutingNumber().getValue());
@@ -164,7 +170,7 @@ public class AddFamilyIT extends BaseLoginTest {
 
 	public void familyAddress() throws InterruptedException {
 		VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
-		getSelectButton.getSelectItem().selectByText("Search Family");
+		getSelectButton.getSelectItemAccept().selectByText("Search Family");
 		waitUntil(driver -> $(SearchComponentView.class).exists(), 80);
 		SearchComponentView getFamily = $(SearchComponentView.class).first();
 		waitUntil(driver -> getFamily.isDisplayed(), 20);
@@ -172,19 +178,19 @@ public class AddFamilyIT extends BaseLoginTest {
 		getFamily.searchButton().click();
 		getFamily.family().getCell("Palmer").click();
 		NaviMenuView getAddress = $(NaviMenuView.class).first();
-		getAddress.getAddresses().click();
+		getAddress.getAddressesAccept().click();
 		ScenarioView addAddress = $(ScenarioView.class).first();
 		addAddress.getAddButton().click();
 		AddressView setAddress = $(AddressView.class).first();
-		setAddress.getCountry().selectByText("USA");
+		setAddress.getCountryAccept().selectByText("USA");
 		setAddress.address("74 River Street", "25 Main Street", "Norfolk", "23503");
-		setAddress.getState().selectByText("VA");
-		setAddress.getAddressType().selectByText("Mailing");
-		Assertions.assertEquals("Mailing", setAddress.getAddressType().getSelectedText());
+		setAddress.getStateAccept().selectByText("Virginia");
+		setAddress.getAddressTypeAccept().selectByText("Mailing");
+		Assertions.assertEquals("Mailing", setAddress.getAddressTypeAccept().getSelectedText());
 //	setAddress.getDefaultMailing().click();
 //	setAddress.getDefaultBilling().click();
 //		setAddress.getDefaultResidence().click();
-		Assertions.assertEquals("VA", setAddress.getState().getSelectedText());
+		Assertions.assertEquals("Virginia", setAddress.getStateAccept().getSelectedText());
 		Assertions.assertEquals("74 River Street", setAddress.getLine1().getValue());
 		Assertions.assertEquals("25 Main Street", setAddress.getLine2().getValue());
 //	Assertions.assertTrue( setAddress.getDefaultMailing().isChecked() );
@@ -196,8 +202,9 @@ public class AddFamilyIT extends BaseLoginTest {
 //	EntryDialogContent ok = $(EntryDialogContent.class).first();
 //	waitUntil(driver -> ok.okButton().isDisplayed(), 80);
 //	ok.okButton().click();
-//		addAddress.getDeleteButton().click();
-//		addAddress.getSaveButton().click();
+		addAddress.getDeleteAddressButton().click();
+		addAddress.getSaveButton().click();
+
 //	EntryDialogContent confirm = $(EntryDialogContent.class).first();
 //	waitUntil(driver -> confirm.okButton().isDisplayed(), 80);
 //	confirm.okButton().click();
@@ -209,7 +216,7 @@ public class AddFamilyIT extends BaseLoginTest {
 	public void editAddress() throws InterruptedException {
 
 		VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
-		getSelectButton.getSelectItem().selectByText("Search Family");
+		getSelectButton.getSelectItemAccept().selectByText("Search Family");
 		waitUntil(driver -> $(SearchComponentView.class).exists(), 80);
 		SearchComponentView getFamily = $(SearchComponentView.class).first();
 		waitUntil(driver -> getFamily.isDisplayed(), 20);
@@ -217,17 +224,17 @@ public class AddFamilyIT extends BaseLoginTest {
 		getFamily.searchButton().click();
 		getFamily.family().getCell("Palmer").click();
 		NaviMenuView getAddress = $(NaviMenuView.class).first();
-		getAddress.getAddresses().click();
+		getAddress.getAddressesAccept().click();
 		ScenarioView edit = $(ScenarioView.class).first();
 		edit.getEditAddressButton().click();
 		AddressView setAddress = $(AddressView.class).first();
 		setAddress.clearAddress();
 		setAddress.address("111 Main Street", "234 Street", "Norfolk", "23503");
-		setAddress.getState().selectByText("VA");
+		setAddress.getStateAccept().selectByText("Virginia");
 		//	setAddress.getDefaultBilling().click();
 		//	setAddress.getDefaultResidence().click();
 //		setAddress.getDefaultMailing().click();
-		Assertions.assertEquals("VA", setAddress.getState().getSelectedText());
+		Assertions.assertEquals("Virginia", setAddress.getStateAccept().getSelectedText());
 		Assertions.assertEquals("111 Main Street", setAddress.getLine1().getValue());
 		Assertions.assertEquals("234 Street", setAddress.getLine2().getValue());
 //		Assertions.assertTrue(setAddress.getDefaultBilling().isChecked());
@@ -241,7 +248,7 @@ public class AddFamilyIT extends BaseLoginTest {
 	@Test
 	public void addBeneficiary() throws InterruptedException {
 		VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
-		getSelectButton.getSelectItem().selectByText("Search Policy");
+		getSelectButton.getSelectItemAccept().selectByText("Search Policy");
 		waitUntil(driver -> $(SearchComponentView.class).exists(), 200);
 		SearchComponentView getPolicy = $(SearchComponentView.class).first();
 		waitUntil(driver -> getPolicy.isDisplayed(), 20);
@@ -249,16 +256,16 @@ public class AddFamilyIT extends BaseLoginTest {
 		getPolicy.searchButton().click();
 		getPolicy.family().getCell("GWL10405863").click();
 		NaviMenuView getBeneficiaries = $(NaviMenuView.class).first();
-		getBeneficiaries.beneficiaries().click();
+		getBeneficiaries.beneficiariesAccept().click();
 		Thread.sleep(3_000);
 		ScenarioView addBeneficiary = $(ScenarioView.class).first();
 		addBeneficiary.getAddBeneButton().click();
 		EntryDialogContent bene = $(EntryDialogContent.class).first();
-		bene.selectBene().selectByText("Add New");
+		bene.selectBeneAccept().selectByText("Add New");
 		bene.okButton().click();
 		Thread.sleep(3_000);
 		EntryDialogContent newBeneficiary = $(EntryDialogContent.class).first();
-		newBeneficiary.addBeneficiaryPfix("Harry", "Potter", "253-44-6453", "chernyakma@yahoo.com", "1234567890");
+		newBeneficiary.addBeneficiary("Harry", "Potter", "253-44-6453", "chernyakma@yahoo.com", "1234567890");
 		newBeneficiary.dob().setDate(LocalDate.of(1980, 8, 25));
 //		newBeneficiary.gender().selectByText("Male");
 		Assertions.assertEquals("Potter", newBeneficiary.lastName().getValue());
@@ -269,50 +276,50 @@ public class AddFamilyIT extends BaseLoginTest {
 		ScenarioView beneficiary = $(ScenarioView.class).first();
 		beneficiary.getSaveButton().click();
 		Thread.sleep(5_000);
-		VaadinDialogView confirm = $(VaadinDialogView.class).first();
-		confirm.getOkButton().click();
+		VaadinConfirmDialogView confirm = $(VaadinConfirmDialogView.class).first();
+		confirm.getDeleteButton().click();
 //		ScenarioView save = $(ScenarioView.class).first();
 //		save.getSaveButton().click();
 
 		NaviMenuView family = $(NaviMenuView.class).first();
-		family.getFamily().click();
+		family.getFamilyAccept().click();
 		ScenarioView getBeneficiary = $(ScenarioView.class).first();
 		Assertions.assertTrue(getBeneficiary.family().getCell("Potter").isDisplayed());
 //		getBeneficiary.getDeleteFamilyBeneButton().click();
 //		VaadinConfirmDialogView delete = $(VaadinConfirmDialogView.class).first();
 //		delete.getSaveButton().click();
 		getBeneficiary.policyNumber().getCell("GWL10405863").click();
-		family.beneficiaries().click();
+		family.beneficiariesAccept().click();
 		ScenarioView deleteBene = $(ScenarioView.class).first();
 		deleteBene.getDeleteBeneButton().click();
 		deleteBene.getSaveButton().click();
 		Thread.sleep(3_000);
-		VaadinDialogView ok = $(VaadinDialogView.class).first();
-		ok.getOkButton().click();
+		VaadinConfirmDialogView ok = $(VaadinConfirmDialogView.class).first();
+		ok.getDeleteButton().click();
 		NaviMenuView deleteFamily = $(NaviMenuView.class).first();
-		deleteFamily.getFamily().click();
+		deleteFamily.getFamilyAccept().click();
 		ScenarioView deleteBeneficiary = $(ScenarioView.class).first();
-		deleteBeneficiary.getDeleteFamilyBeneButton().click();
-		VaadinDialogView delete = $(VaadinDialogView.class).first();
-		delete.getDeleteButton().click();
+		deleteBeneficiary.getDeleteFamilyBeneButtonAccept().click();
+		VaadinConfirmDialogView delete = $(VaadinConfirmDialogView.class).first();
+		delete.getSaveButton().click();
 		deleteBeneficiary.policyNumber().getCell("GWL10405863").click();
 		NaviMenuView menu= $(NaviMenuView.class).first();
 //		menu.claimPolicy().click();
-		menu.policyTransactions().click();
+		menu.policyTransactionsAccept().click();
 		ScenarioView transactions = $(ScenarioView.class).first();
 		transactions.reverseSecondTransactionButton().click();
-		waitUntil(driver -> $(VaadinDialogView.class).exists(), 120);
-		VaadinDialogView reverse = $(VaadinDialogView.class).first();
-		reverse.getConfirmButton().click();
+		waitUntil(driver -> $(VaadinConfirmDialogView.class).exists(), 120);
+		VaadinConfirmDialogView reverse = $(VaadinConfirmDialogView.class).first();
+		reverse.getSaveButton().click();
 		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
 		transactions.deleteFirstTransactionButton().click();
-		waitUntil(driver -> $(VaadinDialogView.class).exists(), 120);
-		VaadinDialogView confirmDelete = $(VaadinDialogView.class).first();
-		confirmDelete.getDeleteButton().click();
+		waitUntil(driver -> $(VaadinConfirmDialogView.class).exists(), 120);
+		VaadinConfirmDialogView confirmDelete = $(VaadinConfirmDialogView.class).first();
+		confirmDelete.getSaveButton().click();
 		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
 		transactions.deleteFirstTransactionButton().click();
-		VaadinDialogView save = $(VaadinDialogView.class).first();
-		save.getDeleteButton().click();
+		VaadinConfirmDialogView save1 = $(VaadinConfirmDialogView.class).first();
+		save1.getSaveButton().click();
 		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
 
 
@@ -321,7 +328,7 @@ public class AddFamilyIT extends BaseLoginTest {
 	@Test
 	public void addNewOwner() throws InterruptedException {
 		VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
-		getSelectButton.getSelectItem().selectByText("Search Policy");
+		getSelectButton.getSelectItemAccept().selectByText("Search Policy");
 		waitUntil(driver -> $(SearchComponentView.class).exists(), 100);
 		SearchComponentView getPolicy = $(SearchComponentView.class).first();
 		waitUntil(driver -> getPolicy.isDisplayed(), 20);
@@ -329,12 +336,12 @@ public class AddFamilyIT extends BaseLoginTest {
 		getPolicy.searchButton().click();
 		getPolicy.family().getCell("GWL10413071").click();
 		NaviMenuView getOwner = $(NaviMenuView.class).first();
-		getOwner.payorAndOwner().click();
+		getOwner.payorAndOwnerAccept().click();
 		Thread.sleep(3_000);
 		ScenarioView newOwner = $(ScenarioView.class).first();
 		newOwner.newOwner().click();
 		EntryDialogContent addNewOwner = $(EntryDialogContent.class).first();
-		addNewOwner.addBeneficiaryPfix("Harry", "Potter", "253446453", "chernyakma@yahoo.com", "1234567890");
+		addNewOwner.addBeneficiary("Harry", "Potter", "253446453", "chernyakma@yahoo.com", "1234567890");
 		addNewOwner.dob().setDate(LocalDate.of(1980, 8, 25));
 //		addNewOwner.gender().selectByText("Male");
 //		addNewOwner.relationship().selectByText("Spouse");
@@ -346,52 +353,52 @@ public class AddFamilyIT extends BaseLoginTest {
 		ScenarioView owner = $(ScenarioView.class).first();
 		owner.getSaveButton().click();
 		Thread.sleep(3_000);
-		VaadinDialogView confirm = $(VaadinDialogView.class).first();
-		confirm.getOkButton().click();
+		VaadinConfirmDialogView confirm = $(VaadinConfirmDialogView.class).first();
+		confirm.getDeleteButton().click();
 		NaviMenuView family = $(NaviMenuView.class).first();
-		family.getFamily().click();
+		family.getFamilyAccept().click();
 		ScenarioView checkOwner = $(ScenarioView.class).first();
 		Assertions.assertTrue(checkOwner.family().getCell("Potter").isDisplayed());
 		checkOwner.policyNumber().getCell("GWL10413071").click();
 		NaviMenuView ownerAndPayor = $(NaviMenuView.class).first();
-		ownerAndPayor.payorAndOwner().click();
+		ownerAndPayor.payorAndOwnerAccept().click();
 		ScenarioView changeOwner = $(ScenarioView.class).first();
-		changeOwner.ownerGUIDAccept().openPopup();
+		changeOwner.ownerGUIDAccept().selectByText("Edward Tompson (***-**-2819)");
 
-		VaadinSelectOverlayView selectOwner =$(VaadinSelectOverlayView.class).first();
+//		VaadinSelectOverlayView selectOwner =$(VaadinSelectOverlayView.class).first();
 
 
 //		System.out.println(selectOwner.gender().getOptions());
-		selectOwner.gender().selectByText("Edward Tompson (***-**-2819)");
+//		selectOwner.gender().selectByText("Edward Tompson (***-**-2819)");
 
 
 		changeOwner.getSaveButton().click();
-		VaadinDialogView ok = $(VaadinDialogView.class).first();
-		ok.getOkButton().click();
+		VaadinConfirmDialogView ok = $(VaadinConfirmDialogView.class).first();
+		ok.getDeleteButton().click();
 		NaviMenuView removeNewOwner = $(NaviMenuView.class).first();
-		removeNewOwner.getFamily().click();
+		removeNewOwner.getFamilyAccept().click();
 		ScenarioView deleteOwner = $(ScenarioView.class).first();
 		deleteOwner.getDeleteFamilyOwner().click();
-		VaadinDialogView delete = $(VaadinDialogView.class).first();
-		delete.getDeleteButton().click();
+		VaadinConfirmDialogView delete = $(VaadinConfirmDialogView.class).first();
+		delete.getSaveButton().click();
 		deleteOwner.policyNumber().getCell("GWL10413071").click();
 		NaviMenuView menu= $(NaviMenuView.class).first();
 //		menu.claimPolicy().click();
-		menu.policyTransactions().click();
+		menu.policyTransactionsAccept().click();
 		ScenarioView transactions = $(ScenarioView.class).first();
 		transactions.reverseSecondTransactionButton().click();
-		waitUntil(driver -> $(VaadinDialogView.class).exists(), 120);
-		VaadinDialogView reverse = $(VaadinDialogView.class).first();
-		reverse.getConfirmButton().click();
+		waitUntil(driver -> $(VaadinConfirmDialogView.class).exists(), 120);
+		VaadinConfirmDialogView reverse = $(VaadinConfirmDialogView.class).first();
+		reverse.getSaveButton().click();
 		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
 		transactions.deleteFirstTransactionButton().click();
-		waitUntil(driver -> $(VaadinDialogView.class).exists(), 120);
-		VaadinDialogView confirmDelete = $(VaadinDialogView.class).first();
-		confirmDelete.getDeleteButton().click();
+		waitUntil(driver -> $(VaadinConfirmDialogView.class).exists(), 120);
+		VaadinConfirmDialogView confirmDelete = $(VaadinConfirmDialogView.class).first();
+		confirmDelete.getSaveButton().click();
 		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
 		transactions.deleteFirstTransactionButton().click();
-		VaadinDialogView save = $(VaadinDialogView.class).first();
-		save.getDeleteButton().click();
+		VaadinConfirmDialogView save = $(VaadinConfirmDialogView.class).first();
+		save.getSaveButton().click();
 		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
 
 	}
@@ -409,26 +416,27 @@ public class AddFamilyIT extends BaseLoginTest {
 		getPolicy.family().getCell("GWL10413068").click();
 */
 		QuickSearchView getPolicy = $ (QuickSearchView.class).first();
-		getPolicy.searchByPolicy().setValue("GWL10413068");
-//        getPolicy.searchByPolicy().sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN);
-//        getPolicy.searchByPolicy().sendKeys(Keys.ENTER);
+//		getPolicy.searchByPolicy().setValue("GWL10413068");
+		getPolicy.searchByPolicyAccept().sendKeys("GWL10413068");
+		getPolicy.searchByPolicyAccept().sendKeys(Keys.ARROW_DOWN);
+        getPolicy.searchByPolicyAccept().sendKeys(Keys.ENTER);
 		waitUntil(driver -> $(ScenarioView.class).exists(), 100);
 		NaviMenuView getOther = $(NaviMenuView.class).first();
-		getOther.otherRoles().click();
+		getOther.otherRolesAccept().click();
 		Thread.sleep(3_000);
 		ScenarioView addOtherRole = $(ScenarioView.class).first();
 		addOtherRole.getAddOtherRolesButton().click();
 		EntryDialogContent newRole = $(EntryDialogContent.class).first();
-		newRole.roleType().selectByText("Power of Attorney");
-		newRole.relation().selectByText("Other");
+		newRole.roleTypeAccept().selectByText("Power of Attorney");
+		newRole.relationAccept().selectByText("Other");
 		newRole.effectiveDate().setDate( LocalDate.now() );
 		newRole.okButton().click();
 		Thread.sleep(3_000);
 		EntryDialogContent addNewRole = $(EntryDialogContent.class).first();
-		addNewRole.addBeneficiaryPfix("Harry", "Potter", "253446453", "chernyakma@yahoo.com", "1234567890");
+		addNewRole.addBeneficiary("Harry", "Potter", "253446453", "chernyakma@yahoo.com", "1234567890");
 		addNewRole.dob().setDate(LocalDate.of(1980, 8, 25));
 //		addNewRole.gender().selectByText("Male");
-		addNewRole.relationship().selectByText("Other");
+		addNewRole.relationshipAccept().selectByText("Other");
 		Assertions.assertEquals("Potter", addNewRole.lastName().getValue());
 //		Assertions.assertEquals("8/25/1980", addNewRole.dob().getInputValue());
 		Assertions.assertEquals("253-44-6453", addNewRole.ssn().getValue());
@@ -436,55 +444,56 @@ public class AddFamilyIT extends BaseLoginTest {
 		addNewRole.okButton().click();
 		Thread.sleep(3_000);
 		AddressView address = $(AddressView.class).first();
-		address.address("4 Liberty Street", "23 Forest Street", "Norfolk", "23503");
-		address.getState().selectByText("VA");
-		address.getAddressType().selectByText("Mailing");
-		Assertions.assertEquals("Mailing", address.getAddressType().getSelectedText());
-		address.getOkButton().click();
+//		address.address("4 Liberty Street", "23 Forest Street", "Norfolk", "23503");
+//		address.getStateAccept().selectByText("Virginia");
+//		address.getAddressTypeAccept().selectByText("Mailing");
+//		Assertions.assertEquals("Mailing", address.getAddressTypeAccept().getSelectedText());
+
+		address.getCancelButton().click();
 		ScenarioView roles = $(ScenarioView.class).first();
 		roles.getSaveButton().click();
 		Thread.sleep(3_000);
-		VaadinDialogView confirm = $(VaadinDialogView.class).first();
-		confirm.getOkButton().click();
+		VaadinConfirmDialogView confirm = $(VaadinConfirmDialogView.class).first();
+		confirm.getDeleteButton().click();
 		NaviMenuView family = $(NaviMenuView.class).first();
-		family.getFamily().click();
+		family.getFamilyAccept().click();
 		ScenarioView checkOwner = $(ScenarioView.class).first();
 		Assertions.assertTrue(checkOwner.family().getCell("Potter").isDisplayed());
 		checkOwner.policyNumber().getCell("GWL10413068").click();
 		NaviMenuView deleteOther = $(NaviMenuView.class).first();
-		deleteOther.otherRoles().click();
+		deleteOther.otherRolesAccept().click();
 		Thread.sleep(3_000);
 		ScenarioView removeRole = $(ScenarioView.class).first();
 		removeRole.getDeleteRoleButton().click();
 		removeRole.getSaveButton().click();
 		Thread.sleep(3_000);
-		VaadinDialogView ok = $(VaadinDialogView.class).first();
-		ok.getOkButton().click();
+		VaadinConfirmDialogView ok = $(VaadinConfirmDialogView.class).first();
+		ok.getDeleteButton().click();
 		NaviMenuView deleteFamilyRole = $(NaviMenuView.class).first();
-		deleteFamilyRole.getFamily().click();
+		deleteFamilyRole.getFamilyAccept().click();
 		ScenarioView deleteRole = $(ScenarioView.class).first();
-		deleteRole.getDeleteFamilyOther().click();
-		VaadinDialogView save = $(VaadinDialogView.class).first();
-		save.getDeleteButton().click();
+		deleteRole.getDeleteFamilyOtherAccept().click();
+		VaadinConfirmDialogView save = $(VaadinConfirmDialogView.class).first();
+		save.getSaveButton().click();
 
 		deleteRole.policyNumber().getCell("GWL10413068").click();
 		NaviMenuView menu= $(NaviMenuView.class).first();
 //		menu.claimPolicy().click();
-		menu.policyTransactions().click();
+		menu.policyTransactionsAccept().click();
 		ScenarioView transactions = $(ScenarioView.class).first();
 		transactions.reverseSecondTransactionButton().click();
-		waitUntil(driver -> $(VaadinDialogView.class).exists(), 120);
-		VaadinDialogView reverse = $(VaadinDialogView.class).first();
-		reverse.getConfirmButton().click();
+		waitUntil(driver -> $(VaadinConfirmDialogView.class).exists(), 120);
+		VaadinConfirmDialogView reverse = $(VaadinConfirmDialogView.class).first();
+		reverse.getSaveButton().click();
 		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
 		transactions.deleteFirstTransactionButton().click();
-		waitUntil(driver -> $(VaadinDialogView.class).exists(), 120);
-		VaadinDialogView confirmDelete = $(VaadinDialogView.class).first();
-		confirmDelete.getDeleteButton().click();
+		waitUntil(driver -> $(VaadinConfirmDialogView.class).exists(), 120);
+		VaadinConfirmDialogView confirmDelete = $(VaadinConfirmDialogView.class).first();
+		confirmDelete.getSaveButton().click();
 		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
 		transactions.deleteFirstTransactionButton().click();
-		VaadinDialogView conf = $(VaadinDialogView.class).first();
-		conf.getDeleteButton().click();
+		VaadinConfirmDialogView conf = $(VaadinConfirmDialogView.class).first();
+		conf.getSaveButton().click();
 		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
 
 	}

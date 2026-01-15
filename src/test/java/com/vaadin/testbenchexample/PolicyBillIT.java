@@ -28,10 +28,10 @@ public class PolicyBillIT extends BaseLoginTest {
 
   */
         QuickSearchView getPolicy = $ (QuickSearchView.class).first();
-        getPolicy.searchByPolicy().setValue("GWL10405871");
+        getPolicy.searchByPolicyAccept().sendKeys("GWL10405871");
 
-//        getPolicy.searchByPolicy().sendKeys(Keys.ARROW_DOWN);
- //       getPolicy.searchByPolicy().sendKeys(Keys.ENTER);
+       getPolicy.searchByPolicyAccept().sendKeys(Keys.ARROW_DOWN);
+        getPolicy.searchByPolicyAccept().sendKeys(Keys.ENTER);
         waitUntil(driver -> $(ScenarioView.class).exists(), 100);
 
 //        NaviMenuView getFamily = $(NaviMenuView.class).first();
@@ -40,24 +40,24 @@ public class PolicyBillIT extends BaseLoginTest {
         ScenarioView addSuspenseButton = $(ScenarioView.class).first();
         addSuspenseButton.addSuspenceButton().click();
         EntryDialogContent suspenseSource = $(EntryDialogContent.class).first();
-        suspenseSource.suspenseAmount().setValue("194.55");
-        Assertions.assertEquals("194.55", suspenseSource.suspenseAmount().getValue());
-        suspenseSource.suspenseSource().selectByText("Check");
-        Assertions.assertEquals("Check", suspenseSource.suspenseSource().getSelectedText());
+        suspenseSource.suspenseAmountAccept().setValue("194.55");
+        Assertions.assertEquals("194.55", suspenseSource.suspenseAmountAccept().getValue());
+        suspenseSource.suspenseSourceAccept().selectByText("Check");
+        Assertions.assertEquals("Check", suspenseSource.suspenseSourceAccept().getSelectedText());
         suspenseSource.depositAccount().selectByText("General Premium");
         suspenseSource.processButton().click();
         Thread.sleep(3_000);
         NaviMenuView transaction = $(NaviMenuView.class).first();
-        transaction.policyTransactions().click();
+        transaction.policyTransactionsAccept().click();
         ScenarioView deleteTransaction = $(ScenarioView.class).first();
         deleteTransaction.reverseAddRiderTransactionButton().click();
-        VaadinDialogView confirmation = $(VaadinDialogView.class).first();
-        confirmation.getDeleteButton().click();
+        VaadinConfirmDialogView confirmation = $(VaadinConfirmDialogView.class).first();
+        confirmation.getSaveButton().click();
         waitUntil(driver -> !deleteTransaction.progressBar().isDisplayed(), 80);
         deleteTransaction.deleteFirstTransactionButton().click();
-        waitUntil(driver -> $(VaadinDialogView.class).exists(), 100);
-        VaadinDialogView confirm = $(VaadinDialogView.class).first();
-        confirm.getDeleteButton().click();
+        waitUntil(driver -> $(VaadinConfirmDialogView.class).exists(), 100);
+        VaadinConfirmDialogView confirm = $(VaadinConfirmDialogView.class).first();
+        confirm.getSaveButton().click();
 
 
  //       ScenarioView checkSuspence = $(ScenarioView.class).first();
@@ -78,31 +78,33 @@ public class PolicyBillIT extends BaseLoginTest {
 
       */
         QuickSearchView getPolicy = $ (QuickSearchView.class).first();
-        getPolicy.searchByPolicy().setValue("GWL10433294");
-//        getPolicy.searchByPolicy().sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN);
-//        getPolicy.searchByPolicy().sendKeys(Keys.ENTER);
+        getPolicy.searchByPolicyAccept().sendKeys("GWL10433294");
+        Thread.sleep(1_000);
+       getPolicy.searchByPolicyAccept().sendKeys(Keys.ARROW_DOWN);
+ //       Thread.sleep(1_000);
+ //       getPolicy.searchByPolicyAccept().sendKeys(Keys.ENTER);
         waitUntil(driver -> $(ScenarioView.class).exists(), 100);
         NaviMenuView transaction = $(NaviMenuView.class).first();
-        transaction.policyTransactions().click();
+        transaction.policyTransactionsAccept().click();
         ScenarioView premiumTransaction = $(ScenarioView.class).first();
         String originalDateText = premiumTransaction.policyPaidToDate().getText();
         initialPaidToDate = LocalDate.parse(originalDateText, formatter);
         premiumTransaction.addTransactionButton().click();
-//        TransactionPopUpPageView selectTransaction = $(TransactionPopUpPageView.class).first();
-        EntryDialogContent selectTransaction = $(EntryDialogContent.class).first();
+        TransactionPopUpPageView selectTransaction = $(TransactionPopUpPageView.class).first();
+ //       EntryDialogContent selectTransaction = $(EntryDialogContent.class).first();
         selectTransaction.transactionType().selectByText("Premium");
         EntryDialogContent premium = $(EntryDialogContent.class).first();
-        premium.premiumAmount().sendKeys(Keys.chord(Keys.CONTROL, "a"), "191.30");
+        premium.premiumAmountAccept().sendKeys(Keys.chord(Keys.CONTROL, "a"), "191.30");
  //       premium.billingMonths().sendKeys(Keys.chord(Keys.CONTROL, "a"), "1");
- //       TransactionPopUpPageView notes = $(TransactionPopUpPageView.class).first();
-        premium.notes().sendKeys("123");
+               TransactionPopUpPageView notes = $(TransactionPopUpPageView.class).first();
+        notes.note().sendKeys("123");
         premium.okButton().click();
         ScenarioView processPremiumTransaction = $(ScenarioView.class).first();
         processPremiumTransaction.processInitialPremiumTransactionButton().click();
         Thread.sleep(3_000);
  //       VaadinConfirmDialogView confirm = $(VaadinConfirmDialogView.class).first();
-        VaadinDialogView confirm = $(VaadinDialogView.class).first();
-        confirm.getConfirmButton().click();
+        VaadinConfirmDialogView confirm = $(VaadinConfirmDialogView.class).first();
+        confirm.getSaveButton().click();
         ScenarioView transactionsPage = $(ScenarioView.class).first();
 
         waitUntil(driver -> !transactionsPage.progressBar().isDisplayed(), 80);
@@ -113,16 +115,16 @@ public class PolicyBillIT extends BaseLoginTest {
         Assertions.assertEquals(initialPaidToDate.plusMonths(1), updatedDate);
         ScenarioView deleteTransaction = $(ScenarioView.class).first();
         deleteTransaction.reverseAddRiderTransactionButton().click();
- //       VaadinConfirmDialogView ok = $(VaadinConfirmDialogView.class).first();
-        VaadinDialogView ok = $(VaadinDialogView.class).first();
-        ok.getConfirmButton().click();
+        VaadinConfirmDialogView ok = $(VaadinConfirmDialogView.class).first();
+ //       VaadinDialogView ok = $(VaadinDialogView.class).first();
+        ok.getSaveButton().click();
         ScenarioView deleteLoanTransaction = $(ScenarioView.class).first();
         waitUntil(driver -> !deleteTransaction.progressBar().isDisplayed(), 80);
 
 //		ScenarioView deleteLoanTransaction = $(ScenarioView.class).first();
         deleteLoanTransaction.deleteLoanTransactionButton().click();
-        VaadinDialogView confirmation = $(VaadinDialogView.class).first();
-        confirmation.getDeleteButton().click();
+        VaadinConfirmDialogView confirmation = $(VaadinConfirmDialogView.class).first();
+        confirmation.getSaveButton().click();
 
 
     }
@@ -140,13 +142,13 @@ public class PolicyBillIT extends BaseLoginTest {
         getPolicy.family().getCell("GWL10413064").click();
 */
         QuickSearchView getPolicy = $ (QuickSearchView.class).first();
-        getPolicy.searchByPolicy().setValue("GWL10413064");
-//        getPolicy.searchByPolicy().sendKeys(Keys.ARROW_DOWN);
-//        getPolicy.searchByPolicy().sendKeys(Keys.ENTER);
+        getPolicy.searchByPolicyAccept().sendKeys("GWL10413064");
+        getPolicy.searchByPolicyAccept().sendKeys(Keys.ARROW_DOWN);
+        getPolicy.searchByPolicyAccept().sendKeys(Keys.ENTER);
         waitUntil(driver -> $(ScenarioView.class).exists(), 100);
 
         NaviMenuView transaction = $(NaviMenuView.class).first();
-        transaction.policyTransactions().click();
+        transaction.policyTransactionsAccept().click();
 
         ScenarioView payPremium = $(ScenarioView.class).first();
 
@@ -168,9 +170,9 @@ public class PolicyBillIT extends BaseLoginTest {
         payPremium.date().setDate(newDate);
 
         payPremium.cycle().click();
- //       VaadinConfirmDialogView cycleUp = $(VaadinConfirmDialogView.class).first();
-        VaadinDialogView cycleUp = $(VaadinDialogView.class).first();
-        cycleUp.getConfirmButton().click();
+        VaadinConfirmDialogView cycleUp = $(VaadinConfirmDialogView.class).first();
+ //       VaadinDialogView cycleUp = $(VaadinDialogView.class).first();
+        cycleUp.getSaveButton().click();
         waitUntil(driver -> !payPremium.progressBar().isDisplayed(), 80);
         String updatedText = payPremium.policyPaidToDate().getText();
 //        System.out.println("Raw date string: '" + dateString + "'");

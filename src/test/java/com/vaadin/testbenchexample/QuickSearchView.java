@@ -14,5 +14,8 @@ public class QuickSearchView extends TestBenchElement {
         protected InputTextElement searchByPolicy() {
             return $( TestBenchElement.class ).id("content").$( ComboBoxElement.class ).first().$( TextFieldElement.class ).id( "input" ).$(InputTextElement.class).first();
         }
+        protected ComboBoxElement searchByPolicyAccept() {
+            return $( TestBenchElement.class ).id("content").$( ComboBoxElement.class ).first();
+        }
 }
 

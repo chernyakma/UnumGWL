@@ -103,7 +103,7 @@ public class NaviMenuView extends TestBenchElement {
 	}
 	protected TestBenchElement claims() {
 
-		return $( TestBenchElement.class ).id( "navi-menu" ).$("IRON-ICON").get( 18 );
+		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 24 );
 	}
 
 	// Suspense
@@ -118,11 +118,11 @@ public class NaviMenuView extends TestBenchElement {
 	}
 	protected TestBenchElement policySuspense() {
 
-		return $( TestBenchElement.class ).id( "navi-menu" ).$("IRON-ICON").get( 30 );
+		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 40 );
 	}
 	protected TestBenchElement groupSuspenseAccept() {
 
-		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 24 );
+		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 27 );
 	}
 
 	// Groups
@@ -133,7 +133,7 @@ public class NaviMenuView extends TestBenchElement {
 	}
 	protected TestBenchElement getDivisions () {
 
-		return $( TestBenchElement.class ).id( "navi-menu" ).$("IRON-ICON").get( 9 );
+		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 12 );
 	}
 	protected TestBenchElement groupBillsAccept() {
 
@@ -175,18 +175,18 @@ public class NaviMenuView extends TestBenchElement {
 
 	protected TestBenchElement processClaim() {
 
-		return $( TestBenchElement.class ).id( "navi-menu" ).$("IRON-ICON").get( 15 );
+		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 21 );
 	}
 	protected TestBenchElement makePayment() {
 
-		return $( TestBenchElement.class ).id( "navi-menu" ).$("IRON-ICON").get( 18 );
+		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 24 );
 	}
 	protected TestBenchElement policy() {
 
-		return $( TestBenchElement.class ).id( "navi-menu" ).$("IRON-ICON").get( 21 );
+		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 21 );
 	}
 	protected TestBenchElement claimPolicy() {
 
-		return $( TestBenchElement.class ).id( "navi-menu" ).$("IRON-ICON").get( 24 );
+		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 39 );
 	}
 }

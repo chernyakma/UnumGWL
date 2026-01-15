@@ -128,8 +128,8 @@ public class EntryDialogContent extends TestBenchElement {
 	protected SelectElement suspenseSourceAccept(){
 		return $(TestBenchElement.class).id( "mainContent" ).$(SelectElement.class).first();
 	}
-	protected ListBoxElement depositAccount(){
-		return $(TestBenchElement.class).id( "mainContent" ).$(SelectElement.class).last().$(ListBoxElement.class).first();
+	protected SelectElement depositAccount(){
+		return $(TestBenchElement.class).id( "mainContent" ).$(SelectElement.class).last();
 	}
 	protected SelectElement depositAccountAccept(){
 		return $(TestBenchElement.class).id( "mainContent" ).$(SelectElement.class).last();
@@ -341,9 +341,9 @@ public class EntryDialogContent extends TestBenchElement {
 	 return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( TextFieldElement.class ).id( "ClaimNumber" ).$(InputTextElement.class).first();
      }
 
-	protected ListBoxElement getClaimType() {
+	protected SelectElement getClaimType() {
 
-		return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( SelectElement.class ).id( "Type").$(ListBoxElement.class).first();
+		return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( SelectElement.class ).id( "Type");
 	}
 	protected DatePickerElement getIncurredDate() {
 
@@ -353,29 +353,29 @@ public class EntryDialogContent extends TestBenchElement {
 
 		return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( DatePickerElement.class ).id( "ReceivedDate");
 	}
-	protected ListBoxElement getClaimCause() {
+	protected SelectElement getClaimCause() {
 
-		return $( TestBenchElement.class ).id( "S1").$( SelectElement.class ).id( "CauseType").$(ListBoxElement.class).first();
+		return $( TestBenchElement.class ).id( "S1").$( SelectElement.class ).id( "CauseType");
 	}
-	protected ListBoxElement getEventType() {
+	protected SelectElement getEventType() {
 
-		return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( SelectElement.class ).id( "Type").$(ListBoxElement.class).first();
+		return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( SelectElement.class ).id( "Type");
 	}
-	protected ListBoxElement getPayee() {
+	protected SelectElement getPayee() {
 
-		return $( TestBenchElement.class ).id( "S1").$( SelectElement.class ).id( "PayeeGUID").$(ListBoxElement.class).first();
+		return $( TestBenchElement.class ).id( "S1").$( SelectElement.class ).id( "PayeeGUID");
 	}
 	protected ButtonElement editDecision (){
 
 		return $( TestBenchElement.class ).id( "S1").$( TestBenchElement.class ).id( "PaymentLinesTable").$(ButtonElement.class).get(1);
 	}
-	protected ListBoxElement getClaimDecision() {
+	protected SelectElement getClaimDecision() {
 
-		return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( SelectElement.class ).id( "Decision").$(ListBoxElement.class).first();
+		return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( SelectElement.class ).id( "Decision");
 	}
-	protected ListBoxElement getDenialClaimReason() {
+	protected SelectElement getDenialClaimReason() {
 
-		return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( SelectElement.class ).id("DenialReason").$(ListBoxElement.class).first();
+		return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( SelectElement.class ).id("DenialReason");
 	}
 
 

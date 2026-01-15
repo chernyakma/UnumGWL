@@ -1,6 +1,7 @@
 package com.vaadin.testbenchexample;
 
 
+import com.vaadin.flow.component.html.testbench.SelectElement;
 import com.vaadin.flow.component.listbox.testbench.ListBoxElement;
 import com.vaadin.testbench.TestBenchElement;
 import com.vaadin.testbench.elementsbase.Element;
@@ -10,6 +11,9 @@ public class VaadinSelectOverlayView extends TestBenchElement {
 
     protected ListBoxElement gender() {
         return $(ListBoxElement.class).first();
+    }
+    protected SelectElement genderAccept() {
+        return $(SelectElement.class).first();
     }
 
 
