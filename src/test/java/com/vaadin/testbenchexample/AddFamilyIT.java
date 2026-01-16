@@ -419,6 +419,7 @@ public class AddFamilyIT extends BaseLoginTest {
 //		getPolicy.searchByPolicy().setValue("GWL10413068");
 		getPolicy.searchByPolicyAccept().sendKeys("GWL10413068");
 		getPolicy.searchByPolicyAccept().sendKeys(Keys.ARROW_DOWN);
+		Thread.sleep(3_000);
         getPolicy.searchByPolicyAccept().sendKeys(Keys.ENTER);
 		waitUntil(driver -> $(ScenarioView.class).exists(), 100);
 		NaviMenuView getOther = $(NaviMenuView.class).first();

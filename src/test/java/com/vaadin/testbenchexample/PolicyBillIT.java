@@ -31,6 +31,7 @@ public class PolicyBillIT extends BaseLoginTest {
         getPolicy.searchByPolicyAccept().sendKeys("GWL10405871");
 
        getPolicy.searchByPolicyAccept().sendKeys(Keys.ARROW_DOWN);
+        Thread.sleep(3_000);
         getPolicy.searchByPolicyAccept().sendKeys(Keys.ENTER);
         waitUntil(driver -> $(ScenarioView.class).exists(), 100);
 
@@ -130,7 +131,7 @@ public class PolicyBillIT extends BaseLoginTest {
     }
 
     @Test
-    public void payEFT() {
+    public void payEFT() throws InterruptedException {
 /*
         VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
         getSelectButton.getSelectItem().selectByText("Search Policy");
@@ -143,8 +144,9 @@ public class PolicyBillIT extends BaseLoginTest {
 */
         QuickSearchView getPolicy = $ (QuickSearchView.class).first();
         getPolicy.searchByPolicyAccept().sendKeys("GWL10413064");
-        getPolicy.searchByPolicyAccept().sendKeys(Keys.ARROW_DOWN);
-        getPolicy.searchByPolicyAccept().sendKeys(Keys.ENTER);
+        Thread.sleep(3_000);
+        getPolicy.searchByPolicyAccept().sendKeys(Keys.ARROW_DOWN,Keys.ENTER);
+ //       getPolicy.searchByPolicyAccept().sendKeys(Keys.ENTER);
         waitUntil(driver -> $(ScenarioView.class).exists(), 100);
 
         NaviMenuView transaction = $(NaviMenuView.class).first();
