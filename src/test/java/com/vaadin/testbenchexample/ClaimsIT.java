@@ -203,7 +203,7 @@ public class ClaimsIT extends BaseLoginTest {
         decision.getClaimDecision().selectByText("Deny");
         decision.okButton().click();
         EntryDialogContent reason = $(EntryDialogContent.class).first();
-        reason.getDenialClaimReason().selectByText("Other");
+        reason.getDenialClaimReason().selectByText("Marked Up In Error");
         reason.okButton().click();
         ScenarioView claimStatus = $(ScenarioView.class).first();
         Assertions.assertEquals("Denied", claimStatus.claimStatus().getText());

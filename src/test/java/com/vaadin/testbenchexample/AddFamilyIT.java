@@ -189,13 +189,13 @@ public class AddFamilyIT extends BaseLoginTest {
 		Assertions.assertEquals("Mailing", setAddress.getAddressTypeAccept().getSelectedText());
 //	setAddress.getDefaultMailing().click();
 //	setAddress.getDefaultBilling().click();
-//		setAddress.getDefaultResidence().click();
+		setAddress.getDefaultResidence().click();
 		Assertions.assertEquals("Virginia", setAddress.getStateAccept().getSelectedText());
 		Assertions.assertEquals("74 River Street", setAddress.getLine1().getValue());
 		Assertions.assertEquals("25 Main Street", setAddress.getLine2().getValue());
 //	Assertions.assertTrue( setAddress.getDefaultMailing().isChecked() );
-//		Assertions.assertTrue(setAddress.getDefaultResidence().isChecked());
-//	Assertions.assertTrue( setAddress.getDefaultResidence().isChecked() );
+//		Assertions.assertTrue(setAddress.getDefaultBilling().isChecked());
+	Assertions.assertTrue( setAddress.getDefaultResidence().isChecked() );
 		setAddress.getOkButton().click();
 //		addAddress.getSaveButton().click();
 
@@ -231,13 +231,13 @@ public class AddFamilyIT extends BaseLoginTest {
 		setAddress.clearAddress();
 		setAddress.address("111 Main Street", "234 Street", "Norfolk", "23503");
 		setAddress.getStateAccept().selectByText("Virginia");
-		//	setAddress.getDefaultBilling().click();
+			setAddress.getDefaultBilling().click();
 		//	setAddress.getDefaultResidence().click();
 //		setAddress.getDefaultMailing().click();
 		Assertions.assertEquals("Virginia", setAddress.getStateAccept().getSelectedText());
 		Assertions.assertEquals("111 Main Street", setAddress.getLine1().getValue());
 		Assertions.assertEquals("234 Street", setAddress.getLine2().getValue());
-//		Assertions.assertTrue(setAddress.getDefaultBilling().isChecked());
+		Assertions.assertTrue(setAddress.getDefaultBilling().isChecked());
 		Assertions.assertEquals("23503", setAddress.getZip().getValue());
 		setAddress.getCancelButton().click();
 		setAddress.getEditOkButton().click();
