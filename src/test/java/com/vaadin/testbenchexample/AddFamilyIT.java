@@ -444,13 +444,13 @@ public class AddFamilyIT extends BaseLoginTest {
 		Assertions.assertEquals("chernyakma@yahoo.com", addNewRole.email().getValue());
 		addNewRole.okButton().click();
 		Thread.sleep(3_000);
-		AddressView address = $(AddressView.class).first();
+//		AddressView address = $(AddressView.class).first();
 //		address.address("4 Liberty Street", "23 Forest Street", "Norfolk", "23503");
 //		address.getStateAccept().selectByText("Virginia");
 //		address.getAddressTypeAccept().selectByText("Mailing");
 //		Assertions.assertEquals("Mailing", address.getAddressTypeAccept().getSelectedText());
 
-		address.getCancelButton().click();
+//		address.getCancelButton().click();
 		ScenarioView roles = $(ScenarioView.class).first();
 		roles.getSaveButton().click();
 		Thread.sleep(3_000);
