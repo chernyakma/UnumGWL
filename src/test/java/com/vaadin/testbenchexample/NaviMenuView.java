@@ -158,7 +158,7 @@ public class NaviMenuView extends TestBenchElement {
 
 		return $( TestBenchElement.class ).id( "navi-menu" ).$("IRON-ICON").get( 27 );
 	}
-	protected TestBenchElement transactionsLoanAccept() {
+	protected TestBenchElement policyTransactionsTI() {
 
 		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 30 );
 	}
@@ -177,9 +177,17 @@ public class NaviMenuView extends TestBenchElement {
 
 		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 21 );
 	}
+	protected TestBenchElement processTIClaim() {
+
+		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 14 );
+	}
 	protected TestBenchElement makePayment() {
 
 		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 24 );
+	}
+	protected TestBenchElement makeTIPayment() {
+
+		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 16 );
 	}
 	protected TestBenchElement policy() {
 
@@ -188,5 +196,9 @@ public class NaviMenuView extends TestBenchElement {
 	protected TestBenchElement claimPolicy() {
 
 		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 39 );
+	}
+	protected TestBenchElement claimTIPolicy() {
+
+		return $( TestBenchElement.class ).id( "navi-menu" ).$( IconElement.class ).get( 24 );
 	}
 }
