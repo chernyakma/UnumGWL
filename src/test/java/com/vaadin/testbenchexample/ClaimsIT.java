@@ -282,5 +282,77 @@ public class ClaimsIT extends BaseLoginTest {
         Assertions.assertEquals("Denied", claimStatus.claimStatus().getText());
 
     }
+    @Test
+    public void LongTermCareClaim() throws InterruptedException, IOException {
+        VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
+        getSelectButton.getSelectItemAccept().selectByText("Search Policy");
+        waitUntil(driver -> $(SearchComponentView.class).exists(), 80);
+        SearchComponentView getPolicy = $(SearchComponentView.class).first();
+        waitUntil(driver -> getPolicy.isDisplayed(), 20);
+//        SearchComponentView getPolicy = $(SearchComponentView.class).first();
+        getPolicy.searchByPolicy().sendKeys("GWL10405874");
+        getPolicy.searchButton().click();
+        getPolicy.family().getCell("GWL10405874").click();
+        NaviMenuView menu = $(NaviMenuView.class).first();
+        menu.claims().click();
+        ScenarioView claims = $(ScenarioView.class).first();
+        claims.getAddClaimsButton().click();
+        EntryDialogContent createClaim = $(EntryDialogContent.class).first();
+        createClaim.addRundomCaseNumber();
+        createClaim.getClaimType().selectByText("Long Term Care");
+ //       createClaim.getSource().selectByText("Spouse");
+        LocalDate currentDate = createClaim.getReceivedDate().getDate();
+        LocalDate newDate = currentDate.minusMonths(4);
+        createClaim.getClaimSubType().selectItemByIndex(1);
+        createClaim.getIncurredDate().setDate(newDate);
+ //       createClaim.getClaimCause().selectByText("Stroke");
+ //       createClaim.getContact().selectItemByIndex(0);
+        createClaim.saveAndOpenButton().click();
+
+        menu.processTIClaim().click();
+        EntryDialogContent event = $(EntryDialogContent.class).last();
+        event.getEventType().selectByText("Approve");
+ //       event.getBenefitPeriod().selectItemByIndex(0);
+        event.okButton().click();
+        menu.makeTIPayment().click();
+        EntryDialogContent payment = $(EntryDialogContent.class).last();
+        //       payment.getPayee().selectItemByIndex(0);
+        payment.okButton().click();
+        menu.claimTIPolicy().click();
+        menu.policyTransactionsAccept().click();
+        ScenarioView transactions = $(ScenarioView.class).first();
+        transactions.reverseThirdTransactionButton().click();
+        waitUntil(driver -> $(VaadinConfirmDialogView.class).exists(), 120);
+        VaadinConfirmDialogView confirm = $(VaadinConfirmDialogView.class).first();
+        confirm.getSaveButton().click();
+        waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
+        transactions.deleteFirstTransactionButton().click();
+        waitUntil(driver -> $(VaadinConfirmDialogView.class).exists(), 120);
+        VaadinConfirmDialogView confirmDelete = $(VaadinConfirmDialogView.class).first();
+        confirmDelete.getSaveButton().click();
+        waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
+        transactions.deleteFirstTransactionButton().click();
+        VaadinConfirmDialogView delete = $(VaadinConfirmDialogView.class).first();
+        delete.getSaveButton().click();
+        waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
+        transactions.deleteFirstTransactionButton().click();
+        waitUntil(driver -> $(VaadinConfirmDialogView.class).exists(), 120);
+        VaadinConfirmDialogView confirmDelete2 = $(VaadinConfirmDialogView.class).first();
+        confirmDelete2.getSaveButton().click();
+        waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
+        menu.claims().click();
+        ScenarioView getClaims = $(ScenarioView.class).first();
+        getClaims.getClaim().getCell("Pending").click();
+        menu.processTIClaim().click();
+        EntryDialogContent change = $(EntryDialogContent.class).first();
+        change.getEventType().selectByText("Denial");
+
+        change.getDenialClaimReason().selectByText("Marked Up In Error");
+        change.okButton().click();
+        ScenarioView claimStatus = $(ScenarioView.class).first();
+        Assertions.assertEquals("Denied", claimStatus.claimStatus().getText());
+        Assertions.assertEquals("Active",claimStatus.policyClaimStatus().getText());
+
+    }
 
 }

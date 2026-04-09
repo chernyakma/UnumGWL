@@ -167,6 +167,9 @@ public class ScenarioView extends TestBenchElement {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("transactions-view-page").first().$(TestBenchElement.class).id("content").$("search-component").first().$(ButtonElement.class).get(1);
 	}
+	protected ButtonElement reverseThirdTransactionButton() {
+		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("transactions-view-page").first().$(TestBenchElement.class).id("content").$("search-component").first().$(ButtonElement.class).get(5);
+	}
 	protected ProgressBarElement progressBar() {
 
 		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("fieldLayout").$("transactions-view-page").first().$(ProgressBarElement.class).first();
@@ -315,6 +318,10 @@ public class ScenarioView extends TestBenchElement {
 	//policy
 	protected TextFieldElement insuredName (){
 		return $( TestBenchElement.class ).id( "viewContent" ).$( "scenario-component" ).first().$( TestBenchElement.class ).id( "fieldLayout" ).$(TestBenchElement.class).id( "InsuredSection" ).$(TextFieldElement.class).id( "PrimaryInsuredFullName" );
+	}
+	protected WebElement policyClaimStatus() {
+
+		return $(TestBenchElement.class).id("viewContent").$("scenario-component").first().$(TestBenchElement.class).id("titleLayout").$(TestBenchElement.class).id("summaryTable").$(TestBenchElement.class).id("componentContent").findElements(By.className("summary-column-value")).get(2);
 	}
 
 }

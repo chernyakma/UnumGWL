@@ -373,6 +373,10 @@ public class EntryDialogContent extends TestBenchElement {
 
 		return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( SelectElement.class ).id( "Decision");
 	}
+	protected SelectElement getClaimSubType() {
+
+		return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( SelectElement.class ).id( "SubType");
+	}
 	protected SelectElement getDenialClaimReason() {
 
 		return $( TestBenchElement.class ).id( "S0").$( TestBenchElement.class ).id( "section" ).$( SelectElement.class ).id("DenialReason");
