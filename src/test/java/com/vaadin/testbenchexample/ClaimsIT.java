@@ -142,6 +142,7 @@ public class ClaimsIT extends BaseLoginTest {
 */
     @Test
     public void deathClaim() throws InterruptedException, IOException {
+        /*
         VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
         getSelectButton.getSelectItemAccept().selectByText("Search Policy");
         waitUntil(driver -> $(SearchComponentView.class).exists(), 80);
@@ -151,6 +152,14 @@ public class ClaimsIT extends BaseLoginTest {
         getPolicy.searchByPolicy().sendKeys("GWL10413319");
         getPolicy.searchButton().click();
         getPolicy.family().getCell("GWL10413319").click();
+
+         */
+        QuickSearchView getPolicy = $ (QuickSearchView.class).first();
+        getPolicy.searchByPolicyAccept().sendKeys("GWL10413319");
+        getPolicy.searchByPolicyAccept().sendKeys(Keys.ARROW_DOWN);
+        Thread.sleep(3_000);
+        getPolicy.searchByPolicyAccept().sendKeys(Keys.ENTER);
+        waitUntil(driver -> $(ScenarioView.class).exists(), 100);
         NaviMenuView menu = $(NaviMenuView.class).first();
         menu.claims().click();
         ScenarioView claims = $(ScenarioView.class).first();
@@ -161,7 +170,6 @@ public class ClaimsIT extends BaseLoginTest {
         LocalDate currentDate = createClaim.getReceivedDate().getDate();
         LocalDate newDate = currentDate.minusMonths(1);
         createClaim.getIncurredDate().setDate(newDate);
- //       createClaim.getClaimCause().selectByText("Colon Cancer - C18.9");
         createClaim.saveAndOpenButton().click();
         menu.processClaim().click();
         EntryDialogContent event = $(EntryDialogContent.class).first();
@@ -284,7 +292,7 @@ public class ClaimsIT extends BaseLoginTest {
     }
     @Test
     public void LongTermCareClaim() throws InterruptedException, IOException {
-
+        /*
         VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
         getSelectButton.getSelectItemAccept().selectByText("Search Policy");
         waitUntil(driver -> $(SearchComponentView.class).exists(), 80);
@@ -294,7 +302,13 @@ public class ClaimsIT extends BaseLoginTest {
         getPolicy.searchByPolicy().sendKeys("GWL10405874");
         getPolicy.searchButton().click();
         getPolicy.family().getCell("GWL10405874").click();
-
+        */
+        QuickSearchView getPolicy = $ (QuickSearchView.class).first();
+        getPolicy.searchByPolicyAccept().sendKeys("GWL10405874");
+        getPolicy.searchByPolicyAccept().sendKeys(Keys.ARROW_DOWN);
+        Thread.sleep(3_000);
+        getPolicy.searchByPolicyAccept().sendKeys(Keys.ENTER);
+        waitUntil(driver -> $(ScenarioView.class).exists(), 100);
         NaviMenuView menu = $(NaviMenuView.class).first();
         menu.claims().click();
         ScenarioView claims = $(ScenarioView.class).first();
