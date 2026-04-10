@@ -2,6 +2,7 @@ package com.vaadin.testbenchexample;
 
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.Keys;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -211,6 +212,7 @@ public class ClaimsIT extends BaseLoginTest {
     }
     @Test
     public void terminalIllnessClaim() throws InterruptedException, IOException {
+        /*
         VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
         getSelectButton.getSelectItemAccept().selectByText("Search Policy");
         waitUntil(driver -> $(SearchComponentView.class).exists(), 80);
@@ -220,6 +222,14 @@ public class ClaimsIT extends BaseLoginTest {
         getPolicy.searchByPolicy().sendKeys("GWL10433294");
         getPolicy.searchButton().click();
         getPolicy.family().getCell("GWL10433294").click();
+
+         */
+        QuickSearchView getPolicy = $ (QuickSearchView.class).first();
+        getPolicy.searchByPolicyAccept().sendKeys("GWL10433294");
+        getPolicy.searchByPolicyAccept().sendKeys(Keys.ARROW_DOWN);
+        Thread.sleep(3_000);
+        getPolicy.searchByPolicyAccept().sendKeys(Keys.ENTER);
+        waitUntil(driver -> $(ScenarioView.class).exists(), 100);
         NaviMenuView menu = $(NaviMenuView.class).first();
         menu.claims().click();
         ScenarioView claims = $(ScenarioView.class).first();
@@ -230,7 +240,6 @@ public class ClaimsIT extends BaseLoginTest {
         LocalDate currentDate = createClaim.getReceivedDate().getDate();
         LocalDate newDate = currentDate.minusMonths(2);
         createClaim.getIncurredDate().setDate(newDate);
-        //       createClaim.getClaimCause().selectByText("Colon Cancer - C18.9");
         createClaim.saveAndOpenButton().click();
         menu.processTIClaim().click();
         EntryDialogContent event = $(EntryDialogContent.class).first();
@@ -238,7 +247,7 @@ public class ClaimsIT extends BaseLoginTest {
         event.okButton().click();
         NaviMenuView payClaim = $(NaviMenuView.class).first();
         payClaim.makeTIPayment().click();
-        EntryDialogContent payment = $(EntryDialogContent.class).first();
+        EntryDialogContent payment = $(EntryDialogContent.class).last();
  //       payment.getPayee().selectByText("Olga Hopkins");
         payment.okButton().click();
         NaviMenuView policyClaim = $(NaviMenuView.class).first();
@@ -267,15 +276,6 @@ public class ClaimsIT extends BaseLoginTest {
         deny.processTIClaim().click();
         EntryDialogContent change = $(EntryDialogContent.class).first();
         change.getEventType().selectByText("Denial");
- /*
-        EntryDialogContent denyClaim = $(EntryDialogContent.class).first();
-        denyClaim.editDecision().click();
-        EntryDialogContent decision = $(EntryDialogContent.class).last();
-        decision.getClaimDecision().selectByText("Deny");
-        decision.okButton().click();
-
-  */
-
         change.getDenialClaimReason().selectByText("Marked Up In Error");
         change.okButton().click();
         ScenarioView claimStatus = $(ScenarioView.class).first();
@@ -284,6 +284,7 @@ public class ClaimsIT extends BaseLoginTest {
     }
     @Test
     public void LongTermCareClaim() throws InterruptedException, IOException {
+
         VaadinSelectView getSelectButton = $(VaadinSelectView.class).first();
         getSelectButton.getSelectItemAccept().selectByText("Search Policy");
         waitUntil(driver -> $(SearchComponentView.class).exists(), 80);
@@ -293,6 +294,7 @@ public class ClaimsIT extends BaseLoginTest {
         getPolicy.searchByPolicy().sendKeys("GWL10405874");
         getPolicy.searchButton().click();
         getPolicy.family().getCell("GWL10405874").click();
+
         NaviMenuView menu = $(NaviMenuView.class).first();
         menu.claims().click();
         ScenarioView claims = $(ScenarioView.class).first();
