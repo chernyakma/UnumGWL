@@ -143,7 +143,7 @@ public class PolicyBillIT extends BaseLoginTest {
         getPolicy.family().getCell("GWL10413064").click();
 */
         QuickSearchView getPolicy = $ (QuickSearchView.class).first();
-        getPolicy.searchByPolicyAccept().sendKeys("GWL10413064");
+        getPolicy.searchByPolicyAccept().sendKeys("GWL10414305");
         Thread.sleep(3_000);
         getPolicy.searchByPolicyAccept().sendKeys(Keys.ARROW_DOWN,Keys.ENTER);
  //       getPolicy.searchByPolicyAccept().sendKeys(Keys.ENTER);
@@ -182,6 +182,18 @@ public class PolicyBillIT extends BaseLoginTest {
         LocalDate updatedDate = LocalDate.parse(updatedText, formatter);
 
         Assertions.assertEquals(initialPaidToDate.plusMonths(1), updatedDate);
+        ScenarioView deleteTransaction = $(ScenarioView.class).first();
+        deleteTransaction.reverseAddRiderTransactionButton().click();
+        VaadinConfirmDialogView ok = $(VaadinConfirmDialogView.class).first();
+        //       VaadinDialogView ok = $(VaadinDialogView.class).first();
+        ok.getSaveButton().click();
+        ScenarioView deleteLoanTransaction = $(ScenarioView.class).first();
+        waitUntil(driver -> !deleteTransaction.progressBar().isDisplayed(), 80);
+
+//		ScenarioView deleteLoanTransaction = $(ScenarioView.class).first();
+        deleteLoanTransaction.deleteLoanTransactionButton().click();
+        VaadinConfirmDialogView confirmation = $(VaadinConfirmDialogView.class).first();
+        confirmation.getSaveButton().click();
 
     }
 
