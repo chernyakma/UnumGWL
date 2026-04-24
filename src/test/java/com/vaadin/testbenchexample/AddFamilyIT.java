@@ -417,7 +417,7 @@ public class AddFamilyIT extends BaseLoginTest {
 */
 		QuickSearchView getPolicy = $ (QuickSearchView.class).first();
 //		getPolicy.searchByPolicy().setValue("GWL10413068");
-		getPolicy.searchByPolicyAccept().sendKeys("GWL10413068");
+		getPolicy.searchByPolicyAccept().sendKeys("GWL10433116");
 		getPolicy.searchByPolicyAccept().sendKeys(Keys.ARROW_DOWN);
 		Thread.sleep(3_000);
         getPolicy.searchByPolicyAccept().sendKeys(Keys.ENTER);
@@ -460,7 +460,7 @@ public class AddFamilyIT extends BaseLoginTest {
 		family.getFamilyAccept().click();
 		ScenarioView checkOwner = $(ScenarioView.class).first();
 		Assertions.assertTrue(checkOwner.family().getCell("Potter").isDisplayed());
-		checkOwner.policyNumber().getCell("GWL10413068").click();
+		checkOwner.policyNumber().getCell("GWL10433116").click();
 		NaviMenuView deleteOther = $(NaviMenuView.class).first();
 		deleteOther.otherRolesAccept().click();
 		Thread.sleep(3_000);
@@ -477,7 +477,7 @@ public class AddFamilyIT extends BaseLoginTest {
 		VaadinConfirmDialogView save = $(VaadinConfirmDialogView.class).first();
 		save.getSaveButton().click();
 
-		deleteRole.policyNumber().getCell("GWL10413068").click();
+		deleteRole.policyNumber().getCell("GWL10433116").click();
 		NaviMenuView menu= $(NaviMenuView.class).first();
 //		menu.claimPolicy().click();
 		menu.policyTransactionsAccept().click();
