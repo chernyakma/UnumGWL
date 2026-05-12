@@ -413,7 +413,7 @@ public class EntryDialogContent extends TestBenchElement {
 		getFinancialInstitutionName().sendKeys( bankName );
 		getBankCity().sendKeys( city );
 		getAccountNumber().sendKeys( accountNumber );
-		getRoutingNumber().setValue( routingNumber );
+		getRoutingNumber().sendKeys( routingNumber );
 
 
 
