@@ -73,7 +73,7 @@ public class GroupListBillIT extends BaseLoginTest {
 //				Assertions.assertEquals( "$100,000.00",checkSuspence.suspenceBalance().getText() );
 
 		checkSuspence.transferSuspenceButton().click();
-
+		waitUntil(driver -> $(EntryDialogContent.class).exists(), 80);
 		EntryDialogContent transferSuspence = $(EntryDialogContent.class).first();
 		transferSuspence.fromAccountAccept().selectByText("General Premium");
 
