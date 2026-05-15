@@ -31,8 +31,8 @@ public class GroupListBillIT extends BaseLoginTest {
 //		EntryDialogContent selectTransaction = $(EntryDialogContent.class).first();
 		TransactionPopUpPageView selectTransaction = $(TransactionPopUpPageView.class).first();
 		selectTransaction.transactionType().selectByText( "Group Manual Bill" );
-		TransactionPopUpPageView effectDate=$(TransactionPopUpPageView.class).first();
-		effectDate.effectiveDate().setDate(LocalDate.now());
+//		TransactionPopUpPageView effectDate=$(TransactionPopUpPageView.class).first();
+		selectTransaction.effectiveDate().setDate(LocalDate.now());
 		EntryDialogContent transaction1 = $(EntryDialogContent.class).first();
 
 		transaction1.okButton().click();
@@ -67,29 +67,42 @@ public class GroupListBillIT extends BaseLoginTest {
 		Assertions.assertEquals( "489.85",suspenseSource.suspenseAmountAccept().getValue() );
 		suspenseSource.suspenseSourceAccept().selectByText( "Check" );
 		Assertions.assertEquals( "Check",suspenseSource.suspenseSourceAccept().getSelectedText() );
+
 		suspenseSource.depositAccountAccept().selectByText( "General Premium" );
 		suspenseSource.processButton().click();
-		ScenarioView checkSuspence=$(ScenarioView.class).first();
+		ScenarioView checkSuspense=$(ScenarioView.class).first();
 //				Assertions.assertEquals( "$100,000.00",checkSuspence.suspenceBalance().getText() );
 
-		checkSuspence.transferSuspenceButton().click();
-		waitUntil(driver -> $(EntryDialogContent.class).exists(), 80);
-		EntryDialogContent transferSuspence = $(EntryDialogContent.class).first();
-		transferSuspence.fromAccountAccept().selectByText("General Premium");
+		checkSuspense.transferSuspenceButton().click();
+		waitUntil(driver -> {
+			try {
+				return $(EntryDialogContent.class).first()
+						.fromAccountAccept() != null;
+			} catch (Exception e) {
+				return false;
+			}
+		}, 80);
+
+//		waitUntil(driver -> $(EntryDialogContent.class).exists(), 80);
+		EntryDialogContent transferSuspense = $(EntryDialogContent.class).first();
+		transferSuspense.fromAccountAccept().selectByText("General Premium");
 
 		//	EntryDialogContent transferSuspenceTo = $(EntryDialogContent.class).first();
 		//	transferSuspence.note().sendKeys( "123" );
 		//	transferSuspence.toAccount().focus();
-		transferSuspence.toAccountAccept().selectByText( "Group" );
-		transferSuspence.searchFamily().sendKeys( "00638100" );
-		transferSuspence.search().doubleClick();
-		transferSuspence.family().getCell( "00638100" ).click();
-		transferSuspence.toAccountAccept().selectByText( "List Bill" );
-		transferSuspence.transferAmountAccept().setValue( "489.85" );
-		Assertions.assertEquals( "489.85",transferSuspence.transferAmountAccept().getValue() );
+		transferSuspense.toAccountAccept().selectByText( "Group" );
+		transferSuspense.searchFamily().sendKeys( "00638100" );
+		transferSuspense.search().doubleClick();
+		waitUntil(driver -> $(EntryDialogContent.class).exists(), 80);
+		EntryDialogContent transferSuspense2 = $(EntryDialogContent.class).first();
+
+		transferSuspense2.family().getCell( "00638100" ).click();
+		transferSuspense2.toAccountAccept().selectByText( "List Bill" );
+		transferSuspense2.transferAmountAccept().setValue( "489.85" );
+		Assertions.assertEquals( "489.85",transferSuspense2.transferAmountAccept().getValue() );
 //		transferSuspence.transferEffectveDate().setDate( LocalDate.now() );
 //		transferSuspence.note().sendKeys( "transfer" );
-		transferSuspence.okButton().click();
+		transferSuspense2.okButton().click();
 //		ScenarioView suspenceAmount=$(ScenarioView.class).first();
 
 	}
