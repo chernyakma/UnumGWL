@@ -254,16 +254,23 @@ public class AddFamilyIT extends BaseLoginTest {
 		waitUntil(driver -> getPolicy.isDisplayed(), 20);
 		getPolicy.searchByPolicy().sendKeys("GWL10405863");
 		getPolicy.searchButton().click();
-		getPolicy.family().getCell("GWL10405863").click();
+		waitUntil(driver -> $(SearchComponentView.class).first().family() != null
+				&& $(SearchComponentView.class).first().family().getCell("GWL10405863") != null, 30);
+		$(SearchComponentView.class).first().family().getCell("GWL10405863").click();
+
 		NaviMenuView getBeneficiaries = $(NaviMenuView.class).first();
 		getBeneficiaries.beneficiariesAccept().click();
-		Thread.sleep(3_000);
+		waitUntil(driver -> $(ScenarioView.class).exists(), 30);
 		ScenarioView addBeneficiary = $(ScenarioView.class).first();
 		addBeneficiary.getAddBeneButton().click();
 		EntryDialogContent bene = $(EntryDialogContent.class).first();
 		bene.selectBeneAccept().selectByText("Add New");
 		bene.okButton().click();
-		Thread.sleep(3_000);
+		waitUntil(driver -> {
+			try {
+				return $(EntryDialogContent.class).first().lastName() != null;
+			} catch (Exception e) { return false; }
+		}, 30);
 		EntryDialogContent newBeneficiary = $(EntryDialogContent.class).first();
 		newBeneficiary.addBeneficiary("Harry", "Potter", "253-44-6453", "chernyakma@yahoo.com", "1234567890");
 		newBeneficiary.dob().setDate(LocalDate.of(1980, 8, 25));
@@ -275,7 +282,7 @@ public class AddFamilyIT extends BaseLoginTest {
 		newBeneficiary.okButton().click();
 		ScenarioView beneficiary = $(ScenarioView.class).first();
 		beneficiary.getSaveButton().click();
-		Thread.sleep(5_000);
+		waitUntil(driver -> $(VaadinConfirmDialogView.class).exists(), 30);
 		VaadinConfirmDialogView confirm = $(VaadinConfirmDialogView.class).first();
 		confirm.getDeleteButton().click();
 //		ScenarioView save = $(ScenarioView.class).first();
@@ -293,7 +300,7 @@ public class AddFamilyIT extends BaseLoginTest {
 		ScenarioView deleteBene = $(ScenarioView.class).first();
 		deleteBene.getDeleteBeneButton().click();
 		deleteBene.getSaveButton().click();
-		Thread.sleep(3_000);
+		waitUntil(driver -> $(VaadinConfirmDialogView.class).exists(), 30);
 		VaadinConfirmDialogView ok = $(VaadinConfirmDialogView.class).first();
 		ok.getDeleteButton().click();
 		NaviMenuView deleteFamily = $(NaviMenuView.class).first();
@@ -318,6 +325,7 @@ public class AddFamilyIT extends BaseLoginTest {
 		confirmDelete.getSaveButton().click();
 		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
 		transactions.deleteFirstTransactionButton().click();
+		waitUntil(driver -> $(VaadinConfirmDialogView.class).exists(), 120);
 		VaadinConfirmDialogView save1 = $(VaadinConfirmDialogView.class).first();
 		save1.getSaveButton().click();
 		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
@@ -334,10 +342,13 @@ public class AddFamilyIT extends BaseLoginTest {
 		waitUntil(driver -> getPolicy.isDisplayed(), 20);
 		getPolicy.searchByPolicy().sendKeys("GWL10413071");
 		getPolicy.searchButton().click();
-		getPolicy.family().getCell("GWL10413071").click();
+		waitUntil(driver -> $(SearchComponentView.class).first().family() != null
+				&& $(SearchComponentView.class).first().family().getCell("GWL10413071") != null, 30);
+		$(SearchComponentView.class).first().family().getCell("GWL10413071").click();
+
 		NaviMenuView getOwner = $(NaviMenuView.class).first();
 		getOwner.payorAndOwnerAccept().click();
-		Thread.sleep(3_000);
+		waitUntil(driver -> $(ScenarioView.class).exists(), 30);
 		ScenarioView newOwner = $(ScenarioView.class).first();
 		newOwner.newOwner().click();
 		EntryDialogContent addNewOwner = $(EntryDialogContent.class).first();
@@ -352,7 +363,7 @@ public class AddFamilyIT extends BaseLoginTest {
 		addNewOwner.okButton().click();
 		ScenarioView owner = $(ScenarioView.class).first();
 		owner.getSaveButton().click();
-		Thread.sleep(3_000);
+		waitUntil(driver -> $(VaadinConfirmDialogView.class).exists(), 30);
 		VaadinConfirmDialogView confirm = $(VaadinConfirmDialogView.class).first();
 		confirm.getDeleteButton().click();
 		NaviMenuView family = $(NaviMenuView.class).first();
@@ -397,6 +408,7 @@ public class AddFamilyIT extends BaseLoginTest {
 		confirmDelete.getSaveButton().click();
 		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
 		transactions.deleteFirstTransactionButton().click();
+		waitUntil(driver -> $(VaadinConfirmDialogView.class).exists(), 120);
 		VaadinConfirmDialogView save = $(VaadinConfirmDialogView.class).first();
 		save.getSaveButton().click();
 		waitUntil(driver -> !transactions.progressBar().isDisplayed(), 80);
@@ -443,17 +455,11 @@ public class AddFamilyIT extends BaseLoginTest {
 		Assertions.assertEquals("253-44-6453", addNewRole.ssn().getValue());
 		Assertions.assertEquals("chernyakma@yahoo.com", addNewRole.email().getValue());
 		addNewRole.okButton().click();
-		Thread.sleep(3_000);
-//		AddressView address = $(AddressView.class).first();
-//		address.address("4 Liberty Street", "23 Forest Street", "Norfolk", "23503");
-//		address.getStateAccept().selectByText("Virginia");
-//		address.getAddressTypeAccept().selectByText("Mailing");
-//		Assertions.assertEquals("Mailing", address.getAddressTypeAccept().getSelectedText());
+		waitUntil(driver -> $(ScenarioView.class).exists(), 120);
 
-//		address.getCancelButton().click();
 		ScenarioView roles = $(ScenarioView.class).first();
 		roles.getSaveButton().click();
-		Thread.sleep(3_000);
+		waitUntil(driver -> $(VaadinConfirmDialogView.class).exists(), 120);
 		VaadinConfirmDialogView confirm = $(VaadinConfirmDialogView.class).first();
 		confirm.getDeleteButton().click();
 		NaviMenuView family = $(NaviMenuView.class).first();
@@ -463,11 +469,11 @@ public class AddFamilyIT extends BaseLoginTest {
 		checkOwner.policyNumber().getCell("GWL10433116").click();
 		NaviMenuView deleteOther = $(NaviMenuView.class).first();
 		deleteOther.otherRolesAccept().click();
-		Thread.sleep(3_000);
+		waitUntil(driver -> $(ScenarioView.class).exists(), 120);
 		ScenarioView removeRole = $(ScenarioView.class).first();
 		removeRole.getDeleteRoleButton().click();
 		removeRole.getSaveButton().click();
-		Thread.sleep(3_000);
+		waitUntil(driver -> $(VaadinConfirmDialogView.class).exists(), 120);
 		VaadinConfirmDialogView ok = $(VaadinConfirmDialogView.class).first();
 		ok.getDeleteButton().click();
 		NaviMenuView deleteFamilyRole = $(NaviMenuView.class).first();
